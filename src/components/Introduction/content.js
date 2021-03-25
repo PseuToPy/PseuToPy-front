@@ -125,3 +125,7 @@ export const items = [
         icon: 'pi pi-fw pi-power-off'
     }
 ];
+
+export const dropdownItems = [
+    "test", "test1", "test2", "test3"
+]
