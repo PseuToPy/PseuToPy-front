@@ -1,0 +1,32 @@
+@import '../../../assets//theme/mytheme/variables';
+
+.footer {
+    background-color: $primaryColor;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    height:100px;
+    width:100%;
+    position: fixed;
+}
+
+.footer-item {
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+}
+
+.footer-link {
+    color: $textColor;
+}
+
+.footer-link:hover {
+    color: $textSecondaryColor;
+}
+
+.footer-list {
+    height: 100%;
+    display: contents;
+}
