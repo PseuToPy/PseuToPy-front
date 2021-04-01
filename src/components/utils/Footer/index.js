@@ -4,7 +4,6 @@ import "./style.scss";
 
 const Footer = () => {
     const { t } = useTranslation();
-
     return (
         <div className="footer">
             <ul className="footer-list">
