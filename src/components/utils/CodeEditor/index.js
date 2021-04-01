@@ -4,7 +4,7 @@ import Highlight, { defaultProps } from "prism-react-renderer";
 import PropTypes from "prop-types";
 import theme from "prism-react-renderer/themes/github";
 
-import "./CodeEditor.scss";
+import "./style.scss";
 
 const CodeEditor = ({ language = "", initialCode = "", readonly = false }) => {
     const [code, setCode] = useState(initialCode);

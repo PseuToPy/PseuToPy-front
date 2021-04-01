@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 import 'primeflex/primeflex.css';
 // import 'primereact/resources/themes/saga-blue/theme.css';
@@ -11,8 +13,8 @@ import './assets/theme/mytheme/theme.scss';
 import './index.scss';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );

@@ -3,16 +3,16 @@ import { Menubar } from 'primereact/menubar';
 import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
-import { items, dropdownItems } from './content';
 import { Panel } from 'primereact/panel';
 import { Toast } from 'primereact/toast';
 import {
 	Accordion,
 	AccordionTab
 } from 'primereact/accordion';
-import './Introduction.css';
+import './style.scss';
+import { items, dropdownItems } from './content';
 
-const Introduction = () => {
+const Test = () => {
     
     const initialState = {
         activeIndex: [],
@@ -89,4 +89,4 @@ const Introduction = () => {
     );
 }
 
-export default Introduction;
+export default Test;
