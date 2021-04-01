@@ -11,6 +11,19 @@
     "intro": {
         "header": "Introduction"
     },
+    "about": {
+        "header": "Qui sommes-nous ?"
+    },
+    "gcu": {
+        "header": "Conditions Générales d'Utilisation"
+    },
+    "editor":{
+        "header": "Éditeur"
+    },
+    "error": {
+        "header": "ERREUR",
+        "message": "Erreur 404 - Pas de page trouvée !"
+    },
     "test": {
         "1": "Current lang === FR",
         "more": "Plus",
