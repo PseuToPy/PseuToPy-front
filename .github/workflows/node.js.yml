@@ -28,6 +28,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm i
     - run: npm run-script build
-    - run: rm -rf /var/www/html/*
-    - run: cp -rf ./build/* /var/www/html/ 
+    - run: at now +1 minutes -f .github/workflows/deploy_front.sh
   
