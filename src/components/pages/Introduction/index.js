@@ -12,14 +12,18 @@ const Introduction = () => {
     return (
         <div className="p-grid">
             <div className="p-col-2"></div>
-            <Panel header="Introduction" className="p-col-8 p-shadow-4">
-                <button onClick={() => dispatch(down(2))}>Less</button>
-                <button onClick={() => dispatch(up(2))}>More</button>
+            <Panel header={t("intro.header")} className="p-col-8 p-shadow-4">
+                <button onClick={() => dispatch(down(2))}>
+                    {t("test.less")}
+                </button>
+                <button onClick={() => dispatch(up(2))}>
+                    {t("test.more")}
+                </button>
                 <br />
                 <br />
                 <span>{count}</span>
                 <br />
-                <h1>{t("welcome.intro")}</h1>
+                <h1>{t("test.1")}</h1>
             </Panel>
             <div className="p-col-2"></div>
         </div>
