@@ -1,6 +1,19 @@
 {
-    "test": "Test FR",
-    "welcome": {
-        "intro": "Bienvenue sur PseuToPy Web !!"
+    "navigation": {
+        "placeholder": "Sélectionner une langue",
+        "intro": "Introduction",
+        "edit": "Éditeur"
+    },
+    "footer": {
+        "about": "À propos",
+        "gcu": "Conditions Générales d'Utilisation"
+    },
+    "intro": {
+        "header": "Introduction"
+    },
+    "test": {
+        "1": "Current lang === FR",
+        "more": "Plus",
+        "less": "Moins"
     }
 }

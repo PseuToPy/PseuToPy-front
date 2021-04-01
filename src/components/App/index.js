@@ -9,13 +9,11 @@ import Test from "../pages/Test";
 import Navigation from "../utils/Navigation";
 import Footer from "../utils/Footer";
 
-
-
 function App() {
     return (
         <div className="App">
             <BrowserRouter>
-                <Navigation/>
+                <Navigation />
                 <Switch>
                     <Route exact path="/" component={Introduction} />
                     <Route path="/editor" component={Editor} />
@@ -24,7 +22,7 @@ function App() {
                     <Route path="/test" component={Test} />
                     <Route path="*" component={Error404} />
                 </Switch>
-                <Footer/>
+                <Footer />
             </BrowserRouter>
         </div>
     );

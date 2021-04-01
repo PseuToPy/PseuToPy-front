@@ -2,8 +2,11 @@ import "./style.scss";
 import { Link } from "react-router-dom";
 import { Dropdown } from "primereact/dropdown";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Navigation = () => {
+    const { t, i18n } = useTranslation();
+
     const language = [
         { name: "English", code: "en" },
         { name: "Français", code: "fr" },
@@ -13,6 +16,7 @@ const Navigation = () => {
 
     const onLanguageChange = e => {
         setSelectedLanguage(e.value);
+        i18n.changeLanguage(e.value.code);
     };
 
     return (
@@ -34,7 +38,9 @@ const Navigation = () => {
                         aria-haspopup="false"
                     >
                         <span className="p-menuitem-icon pi pi-home"></span>
-                        <span className="p-menuitem-text">Introduction</span>
+                        <span className="p-menuitem-text">
+                            {t("navigation.intro")}
+                        </span>
                     </Link>
                 </li>
                 <li role="none" className="p-menuitem">
@@ -45,7 +51,9 @@ const Navigation = () => {
                         aria-haspopup="false"
                     >
                         <span className="p-menuitem-icon pi pi-pencil"></span>
-                        <span className="p-menuitem-text">Editor</span>
+                        <span className="p-menuitem-text">
+                            {t("navigation.edit")}
+                        </span>
                     </Link>
                 </li>
             </ul>
@@ -55,7 +63,7 @@ const Navigation = () => {
                     options={language}
                     onChange={onLanguageChange}
                     optionLabel="name"
-                    placeholder="Select a language"
+                    placeholder={t("navigation.placeholder")}
                 />
             </div>
         </div>
