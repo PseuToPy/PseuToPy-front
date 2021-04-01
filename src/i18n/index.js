@@ -19,7 +19,7 @@ i18n
         },
         debug: true,
         react: {
-            useSuspense: false,
+            useSuspense: true,
         },
     });
 
