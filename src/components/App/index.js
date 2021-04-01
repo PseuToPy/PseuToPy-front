@@ -8,25 +8,26 @@ import Error404 from "../pages/Error404";
 import Test from "../pages/Test";
 import Navigation from "../utils/Navigation";
 import Footer from "../utils/Footer";
-
-
+import { Suspense } from "react";
 
 function App() {
     return (
-        <div className="App">
-            <BrowserRouter>
-                <Navigation/>
-                <Switch>
-                    <Route exact path="/" component={Introduction} />
-                    <Route path="/editor" component={Editor} />
-                    <Route path="/about" component={About} />
-                    <Route path="/cgu" component={Cgu} />
-                    <Route path="/test" component={Test} />
-                    <Route path="*" component={Error404} />
-                </Switch>
-                <Footer/>
-            </BrowserRouter>
-        </div>
+        <Suspense fallback={<div></div>} maxDuration={2000}>
+            <div className="App">
+                <BrowserRouter>
+                    <Navigation />
+                    <Switch>
+                        <Route exact path="/" component={Introduction} />
+                        <Route path="/editor" component={Editor} />
+                        <Route path="/about" component={About} />
+                        <Route path="/cgu" component={Cgu} />
+                        <Route path="/test" component={Test} />
+                        <Route path="*" component={Error404} />
+                    </Switch>
+                    <Footer />
+                </BrowserRouter>
+            </div>
+        </Suspense>
     );
 }
 
