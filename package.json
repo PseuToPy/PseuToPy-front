@@ -1,0 +1,54 @@
+{
+  "name": "pseutopy-front",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.5.1",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.8.3",
+    "i18next": "^20.1.0",
+    "i18next-http-backend": "^1.2.1",
+    "node-sass": "^5.0.0",
+    "primeflex": "^2.0.0",
+    "primeicons": "^4.1.0",
+    "primereact": "^6.1.0",
+    "prism-react-renderer": "^1.2.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-i18next": "^11.8.12",
+    "react-redux": "^7.2.3",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "react-simple-code-editor": "^0.11.0",
+    "react-transition-group": "^4.4.1",
+    "web-vitals": "^1.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1"
+  }
+}
