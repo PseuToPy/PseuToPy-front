@@ -1,24 +1,29 @@
-import './style.scss';
-import { useSelector, useDispatch } from 'react-redux'
-import { up, down } from '../../../redux/features/test/testSlice'
-import { Panel } from 'primereact/panel';
+import "./style.scss";
+import { useSelector, useDispatch } from "react-redux";
+import { up, down } from "../../../redux/features/test/testSlice";
+import { Panel } from "primereact/panel";
+import { useTranslation } from "react-i18next";
 
 const Introduction = () => {
     const count = useSelector(state => state.test.value);
     const dispatch = useDispatch();
-    
+    const { t } = useTranslation();
+
     return (
         <div className="p-grid">
             <div className="p-col-2"></div>
             <Panel header="Introduction" className="p-col-8 p-shadow-4">
                 <button onClick={() => dispatch(down(2))}>Less</button>
                 <button onClick={() => dispatch(up(2))}>More</button>
-                <br /><br />
+                <br />
+                <br />
                 <span>{count}</span>
+                <br />
+                <h1>{t("welcome.intro")}</h1>
             </Panel>
             <div className="p-col-2"></div>
         </div>
     );
-}
+};
 
 export default Introduction;
