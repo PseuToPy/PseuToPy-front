@@ -12,7 +12,7 @@ import { Suspense } from "react";
 
 function App() {
     return (
-        <Suspense fallback={<div>Loading...</div>} maxDuration={2000}>
+        <Suspense fallback={<div></div>} maxDuration={2000}>
             <div className="App">
                 <BrowserRouter>
                     <Navigation />
