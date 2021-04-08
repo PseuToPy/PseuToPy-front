@@ -1,0 +1,51 @@
+.editor {
+    $globalPadding: 10px;
+    $lineNumberWidth: 20px;
+    $lineContentPaddingLeft: 8px;
+    $selectionColor: rgb(233, 232, 232);
+
+    ::-moz-selection,
+    ::selection {
+        background: $selectionColor;
+    }
+
+    & {
+        box-sizing: "border-box";
+        padding: $globalPadding !important;
+        border: 1px solid grey;
+        width: 400px;
+    }
+
+    & textarea {
+        $paddingSide: $globalPadding + $lineNumberWidth +
+            $lineContentPaddingLeft;
+        $paddingTopBot: $globalPadding;
+        padding: $paddingTopBot $paddingSide !important;
+    }
+
+    .editor-container {
+        text-align: left;
+
+        & .token-line {
+            line-height: 1.3em;
+            height: 1.3em;
+        }
+    }
+
+    .editor-line {
+        display: table-row;
+    }
+
+    .editor-line-number {
+        display: table-cell;
+        text-align: right;
+        user-select: none;
+        opacity: 0.5;
+        width: $lineNumberWidth;
+    }
+
+    .editor-line-content {
+        display: table-cell;
+        padding-left: $lineContentPaddingLeft;
+    }
+}
