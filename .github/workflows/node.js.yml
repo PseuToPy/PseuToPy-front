@@ -28,5 +28,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm i
     - run: npm run-script build --prod
-    - run: at now +1 minutes -f .github/workflows/deploy_front.sh
+    - run: .github/workflows/deploy_front.sh
   
