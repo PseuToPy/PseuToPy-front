@@ -16,6 +16,7 @@ function App() {
             <div className="App">
                 <BrowserRouter>
                     <Navigation />
+                    <div>{process.env.REACT_APP_PSEUTOPY_API_URL}</div>
                     <Switch>
                         <Route exact path="/" component={Introduction} />
                         <Route path="/editor" component={Editor} />
