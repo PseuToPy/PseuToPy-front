@@ -1,2 +1,3 @@
-kill -9 $(pidof lite-server)
-lite-server --baseDir="build" &
+rm -rf /var/www/html/*
+cp -rf build/* /var/www/html/
+cp .github/workflows/.htaccess /var/www/html/ -f
