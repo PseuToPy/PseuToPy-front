@@ -1,7 +1,5 @@
-@import "../../../assets//theme/mytheme/variables";
-
 .footer {
-    background-color: $primaryColor;
+    background-color: #9ced9c;
     bottom: 0px;
     left: 0px;
     right: 0px;
@@ -20,11 +18,11 @@
 }
 
 .footer-link {
-    color: $textColor;
+    color: #000;
 }
 
 .footer-link:hover {
-    color: $textSecondaryColor;
+    color: rgba(3, 3, 3, 0.712);
 }
 
 .footer-list {
