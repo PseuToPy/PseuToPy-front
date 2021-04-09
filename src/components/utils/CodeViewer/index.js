@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import Editor from "react-simple-code-editor";
+import React from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import PropTypes from "prop-types";
 import theme from "prism-react-renderer/themes/github";
 
 import "./style.scss";
 
-const CodeViewer = ({ language = "", code = "" }) => {
+const CodeViewer = ({ language = "", code = "", withLineNumbers = true }) => {
 
     return (
         <Highlight
@@ -16,14 +15,14 @@ const CodeViewer = ({ language = "", code = "" }) => {
             language={language}
         >
             {({ className, style, tokens, getLineProps, getTokenProps }) => (
-                <div className="editor-container">
+                <div className="editor code" style={style}>
                     {tokens.map((line, i) => (
                         <div
                             key={i}
                             {...getLineProps({ line, key: i })}
                             className="editor-line"
                         >
-                            <span className="editor-line-number">{i + 1}</span>
+                            { withLineNumbers ? <span className="editor-line-number">{i + 1}</span> : null }
                             <span className="editor-line-content">
                                 {line.map((token, key) => (
                                     <span
@@ -42,7 +41,7 @@ const CodeViewer = ({ language = "", code = "" }) => {
 
 CodeViewer.propTypes = {
     language: PropTypes.string,
-    initialCode: PropTypes.string
+    code: PropTypes.string
 };
 
 export default CodeViewer;

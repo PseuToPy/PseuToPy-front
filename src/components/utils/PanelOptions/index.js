@@ -7,6 +7,10 @@ import {
 	Accordion,
     AccordionTab
 } from 'primereact/accordion';
+import { Button } from 'primereact/button';
+
+import CodeViewer from "../CodeViewer";
+import "./style.scss";
 
 const PanelOptions = () => {
 
@@ -17,38 +21,47 @@ const PanelOptions = () => {
         return state.editor.grammar
     });
 
+    const [activeIndex, setActiveIndex] = useState([]);
+    const [opened, fold] = useState(false);
+
     useEffect(() => {
         dispatch(fetchGrammar(i18n.language));
     }, [dispatch, i18n.language])
 
-    const initialState = {
-        activeIndex: []
-    }
-
     const renderOptions = () => {
         return grammar.map(
             (category) =>
-                <AccordionTab header={category.category} key={category.category}>
+                <AccordionTab header={category.category} key={category.category} >
                     <div>
                         {category.rules.map((rule) => 
-                            <h3 key={rule.rule}>{rule.rule}</h3>
+                            <div key={rule.rule}>
+                                <h3>{rule.rule}</h3>
+                                <div>
+                                    {rule.samples.map(
+                                        (sample) => (
+                                            <div key={sample}>
+                                                <CodeViewer code={sample} withLineNumbers={false}/>
+                                            </div>
+                                        )
+                                    )}
+                                </div>
+                            </div>
                         )}
                     </div>
                 </AccordionTab>
         );
     }
 
-    const [state, setState] = useState(initialState);
-
     return (
-        <div>
-
+        <div className={`panel-options ${opened ? 'panel-opened' : ''}`}>
             <Accordion multiple
-                activeIndex={state.activeIndex}
-                onTabChange={e => setState({ activeIndex: e.index })}
+                activeIndex={activeIndex}
+                onTabChange={e => setActiveIndex(e.index)}
+                className="panel-options-accordion"
             >
                 {renderOptions()}
             </Accordion>
+            <Button className="panel-options-button" label={opened ? "<" : ">"} onClick={() => fold(!opened)}/>
         </div>
     );
 }

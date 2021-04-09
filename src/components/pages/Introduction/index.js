@@ -4,13 +4,15 @@ import { up, down } from "../../../redux/features/test/testSlice";
 import { Panel } from "primereact/panel";
 import { useTranslation } from "react-i18next";
 
+import CodeViewer from "../../utils/CodeViewer";
+
 const Introduction = () => {
     const count = useSelector(state => state.test.value);
     const dispatch = useDispatch();
     const { t } = useTranslation();
 
     return (
-        <div className="p-grid">
+        <div className="intro p-grid">
             <div className="p-col-2"></div>
             <Panel header={t("intro.header")} className="p-col-8 p-shadow-4">
                 <button onClick={() => dispatch(down(2))}>

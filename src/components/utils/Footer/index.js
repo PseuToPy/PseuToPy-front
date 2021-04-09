@@ -6,8 +6,8 @@ const Footer = () => {
     const { t } = useTranslation();
     return (
         <div className="footer">
-            <ul className="footer-list">
-                <li className="p-d-inline footer-item">
+            <div className="footer-list">
+                <span className="footer-item">
                     <Link
                         to="/about"
                         className="footer-link"
@@ -15,8 +15,8 @@ const Footer = () => {
                     >
                         {t("footer.about")}
                     </Link>
-                </li>
-                <li className="p-d-inline footer-item">
+                </span>
+                <span className="footer-item">
                     <Link
                         to="/cgu"
                         className="footer-link"
@@ -24,8 +24,8 @@ const Footer = () => {
                     >
                         {t("footer.gcu")}
                     </Link>
-                </li>
-            </ul>
+                </span>
+            </div>
         </div>
     );
 };

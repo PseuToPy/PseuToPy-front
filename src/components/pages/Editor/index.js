@@ -7,9 +7,11 @@ const Editor = () => {
     const { t } = useTranslation();
 
     return (
-        <div>
-            <h1>{t("editor.header")}</h1>
-            <PanelOptions/>
+        <div className="editor-page">
+            <div className="editor-page-content">
+                <PanelOptions/>
+                <CodeEditor/>
+            </div>
         </div>
     );
 };
