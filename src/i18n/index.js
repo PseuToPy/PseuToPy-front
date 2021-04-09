@@ -9,6 +9,11 @@ i18n
     .use(initReactI18next)
     // Init i18next
     .init({
+        backend: {
+            loadPath: "/locales/{{lng}}/{{ns}}.json",
+        },
+        defaultNS: "default",
+        ns: ["default", "about"],
         lng: "en",
         fallbackLng: "en",
         supportedLngs: ["en", "fr"],
@@ -21,6 +26,7 @@ i18n
         react: {
             useSuspense: true,
         },
+        returnObjects: true,
     });
 
 export default i18n;
