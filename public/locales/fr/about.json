@@ -7,8 +7,8 @@
     },
     "part_2": {
         "header": "Comment fonctionne PseuToPy ?",
-        "1": "PseuToPy utilise <a href=`http://textx.github.io/textX/`>textX</a> afin de définir les grammaires des pseudocodes dans chacune des langues supportées par notre application. Ainsi, des personnes non-anglophones cherchant à apprendre à programmer peuvent écrire des petits programmes en utilisant leurs langues maternelles. textX offre aussi la possibilité d'analyser ces instructions afin d'en construire l'arbre de syntaxe abstrait correspondant. Puis, cet arbre est passé à <a href=`https://astor.readthedocs.io/en/latest/`>astor</a> qui peut ensuite reconstituer les instructions correspondantes en Python.",
+        "1": "PseuToPy utilise <a href='http://textx.github.io/textX/' target='_blank'>textX</a> afin de définir les grammaires des pseudocodes dans chacune des langues supportées par notre application. Ainsi, des personnes non-anglophones cherchant à apprendre à programmer peuvent écrire des petits programmes en utilisant leurs langues maternelles. textX offre aussi la possibilité d'analyser ces instructions afin d'en construire l'arbre de syntaxe abstrait correspondant. Puis, cet arbre est passé à <a href='https://astor.readthedocs.io/en/latest/' target='_blank'>astor</a> qui peut ensuite reconstituer les instructions correspondantes en Python.",
         "2": "Plus d'informations sont à venir avec le développement de nouvelles fonctionnalités principales.",
-        "3": "PseuToPy est développé sous licence MIT. Le code source se trouve sur <a href='https://github.com/PseuToPy/PseuToPy-api'>GitHub</a>. Ce projet est principalement développé et maintenu par <a href='https://patrickwang.fr/'>Patrick Wang</a>. "
+        "3": "PseuToPy est développé sous licence MIT. Le code source se trouve sur <a href='https://github.com/PseuToPy/PseuToPy-api' target='_blank'>GitHub</a>. Ce projet est principalement développé et maintenu par <a href='https://patrickwang.fr/' target='_blank'>Patrick Wang</a>."
     }
 }
