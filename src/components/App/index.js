@@ -16,17 +16,15 @@ function App() {
         <Suspense fallback={<div></div>} maxDuration={2000}>
             <div className="App">
                 <BrowserRouter>
-                    <div className="body">
-                        <Navigation />
-                        <Switch>
-                            <Route exact path="/" component={Introduction} />
-                            <Route path="/editor" component={Editor} />
-                            <Route path="/about" component={About} />
-                            <Route path="/cgu" component={Cgu} />
-                            <Route path="/test" component={Test} />
-                            <Route path="*" component={Error404} />
-                        </Switch>
-                    </div>
+                    <Navigation />
+                    <Switch>
+                        <Route exact path="/" component={Introduction} />
+                        <Route path="/editor" component={Editor} />
+                        <Route path="/about" component={About} />
+                        <Route path="/cgu" component={Cgu} />
+                        <Route path="/test" component={Test} />
+                        <Route path="*" component={Error404} />
+                    </Switch>
                     <Footer />
                 </BrowserRouter>
             </div>
