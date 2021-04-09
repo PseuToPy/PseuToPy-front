@@ -5,11 +5,9 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 
 import "primeflex/primeflex.css";
-// import 'primereact/resources/themes/saga-blue/theme.css';
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
-
-import "./assets/theme/mytheme/theme.scss";
+import "./assets/theme/theme.css";
 import "./i18n";
 import "./index.scss";
 

@@ -1,13 +1,14 @@
-@import '../../../assets/theme/mytheme/variables';
-
 .footer {
-    margin-top: 10px;
-    background-color: $primaryColor;
+    background-color: var(--primary-color);
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
     height: 50px;
     width: 100%;
     text-align: center;
     bottom: 0;
     flex-shrink: 0;
+    position: fixed;
 }
 
 .footer-item {
@@ -17,11 +18,11 @@
 }
 
 .footer-link {
-    color: $textColor;
+    color: #000;
 }
 
 .footer-link:hover {
-    color: $textSecondaryColor;
+    color: rgba(3, 3, 3, 0.712);
 }
 
 .footer-list {
