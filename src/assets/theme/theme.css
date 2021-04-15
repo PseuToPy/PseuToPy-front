@@ -702,12 +702,12 @@
 }
 
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
-    color: var(--text-color-secondary);
+    color: var(--text-color);
     background: var(--secondary-color)
 }
 
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover {
-    color: var(--text-color);
+    color: var(--text-color-secondary);
     background: var(--secondary-color)
 }
 
@@ -4256,8 +4256,6 @@
     padding: .5rem;
     background: var(--primary-color);
     color: var(--text-color-secondary);
-    border: 1px solid #dee2e6;
-    border-radius: 3px
 }
 
 .p-menubar .p-menuitem-link {
@@ -4400,12 +4398,12 @@
         display: flex;
         width: 2rem;
         height: 2rem;
-        color: #6c757d;
+        color: var(--text-color-secondary);
         border-radius: 50%;
         transition: background-color .2s, color .2s, box-shadow .2s
     }
     .p-menubar .p-menubar-button:hover {
-        color: #6c757d;
+        color: var(--text-color-secondary);
         background: var(--secondary-color)
     }
     .p-menubar .p-menubar-button:focus {
@@ -4454,13 +4452,13 @@
         background: var(--secondary-color)
     }
     .p-menubar .p-menubar-root-list>.p-menuitem>.p-menuitem-link:not(.p-disabled):hover .p-menuitem-text {
-        color: var(--text-color)
+        color: var(--text-color-secondary);
     }
     .p-menubar .p-menubar-root-list>.p-menuitem>.p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon {
-        color: #6c757d
+        color: var(--text-color-secondary);
     }
     .p-menubar .p-menubar-root-list>.p-menuitem>.p-menuitem-link:not(.p-disabled):hover .p-submenu-icon {
-        color: #6c757d
+        color: var(--text-color-secondary);
     }
     .p-menubar .p-menubar-root-list>.p-menuitem>.p-menuitem-link:focus {
         outline: 0 none;
