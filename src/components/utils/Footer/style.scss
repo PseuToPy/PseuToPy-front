@@ -1,5 +1,5 @@
 .footer {
-    background-color: #9ced9c;
+    background-color: var(--surface-b);
     bottom: 0px;
     left: 0px;
     right: 0px;
@@ -18,11 +18,11 @@
 }
 
 .footer-link {
-    color: #000;
+    color: #fff;
 }
 
 .footer-link:hover {
-    color: rgba(3, 3, 3, 0.712);
+    color: rgba(255, 255, 255, 0.596);
 }
 
 .footer-list {
