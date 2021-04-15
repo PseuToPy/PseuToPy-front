@@ -30,6 +30,6 @@ grammaire spécifiée.
 Plus d'informations sont à venir avec le développement de nouvelles fonctionnalités...
 
 PseuToPy est développé sous licence MIT. Le code source se trouve sur
-[GitHub](https://github.com/PseuToPy) et est principalement développé par [Patick
+[GitHub](https://github.com/PseuToPy) et est principalement développé par [Patrick
 Wang](https://patrickwang.fr), avec l'aide très appréciée des contributeurs ayant aussi
 travaillé sur ce projet.
