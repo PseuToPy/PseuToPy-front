@@ -34,15 +34,14 @@ const Navigation = () => {
         }
     ];
 
-    const end = <div className="p-menubar-end">
-        <Dropdown
+    const end = <Dropdown
             value={selectedLanguage}
             options={language}
             onChange={onLanguageChange}
             optionLabel="name"
             placeholder={t("navigation.placeholder")}
         />
-    </div>
+
     
     return (
         <Menubar model={items} start={start} end={end} />
