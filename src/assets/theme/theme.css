@@ -4330,15 +4330,15 @@
 }
 
 .p-menubar .p-menubar-root-list>.p-menuitem>.p-menuitem-link:not(.p-disabled):hover .p-menuitem-text {
-    color: var(--text-color)
+    color: var(--text-color-secondary)
 }
 
 .p-menubar .p-menubar-root-list>.p-menuitem>.p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon {
-    color: #6c757d
+    color: var(--text-color-secondary)
 }
 
 .p-menubar .p-menubar-root-list>.p-menuitem>.p-menuitem-link:not(.p-disabled):hover .p-submenu-icon {
-    color: #6c757d
+    color: var(--text-color-secondary)
 }
 
 .p-menubar .p-menubar-root-list>.p-menuitem>.p-menuitem-link:focus {
