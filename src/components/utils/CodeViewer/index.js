@@ -41,7 +41,7 @@ const CodeViewer = ({ language = "", code = "", withLineNumbers = true }) => {
 
 CodeViewer.propTypes = {
     language: PropTypes.string,
-    code: PropTypes.string
+    withLineNumbers: PropTypes.bool,
 };
 
 export default CodeViewer;

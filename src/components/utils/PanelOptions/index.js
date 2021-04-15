@@ -16,10 +16,7 @@ const PanelOptions = () => {
 
     const { i18n } = useTranslation();
     const dispatch = useDispatch();
-    const grammar = useSelector(state => { 
-        console.log(state);
-        return state.editor.grammar
-    });
+    const grammar = useSelector(state => state.editor.grammar);
 
     const [activeIndex, setActiveIndex] = useState([]);
     const [opened, fold] = useState(false);

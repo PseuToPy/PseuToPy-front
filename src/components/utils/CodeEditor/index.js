@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import react from "react";
 import Editor from "react-simple-code-editor";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import PropTypes from "prop-types";
@@ -6,8 +6,7 @@ import theme from "prism-react-renderer/themes/github";
 
 import "./style.scss";
 
-const CodeEditor = ({ language = "", initialCode = "", readonly = false }) => {
-    const [code, setCode] = useState(initialCode);
+const CodeEditor = ({ language = "", code = "", onWrite, readonly = false}) => {
 
     const highlight = rawCode => (
         <Highlight
@@ -44,7 +43,7 @@ const CodeEditor = ({ language = "", initialCode = "", readonly = false }) => {
         <Editor
             className="editor code"
             value={code}
-            onValueChange={newCode => setCode(newCode)}
+            onValueChange={newCode => onWrite(newCode)}
             highlight={highlight}
             disabled={readonly}
             style={{ ...theme.plain }}
@@ -54,7 +53,8 @@ const CodeEditor = ({ language = "", initialCode = "", readonly = false }) => {
 
 CodeEditor.propTypes = {
     language: PropTypes.string,
-    initialCode: PropTypes.string,
+    code: PropTypes.string,
+    onWrite: PropTypes.func,
     readonly: PropTypes.bool,
 };
 
