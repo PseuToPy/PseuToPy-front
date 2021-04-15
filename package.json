@@ -19,6 +19,7 @@
     "react-i18next": "^11.8.12",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
+    "react-router-hash-link": "^2.4.0",
     "react-scripts": "4.0.3",
     "react-simple-code-editor": "^0.11.0",
     "react-transition-group": "^4.4.1",
