@@ -1,6 +1,7 @@
 import i18n from "i18next";
 import Backend from "i18next-http-backend";
 import { initReactI18next } from "react-i18next";
+import { needsDebug } from "../debugLevel";
 
 i18n
     // Use custom backend path to load transltion files
@@ -12,8 +13,6 @@ i18n
         backend: {
             loadPath: "/locales/{{lng}}/{{ns}}.json",
         },
-        defaultNS: "default",
-        ns: ["default", "about"],
         lng: "en",
         fallbackLng: "en",
         supportedLngs: ["en", "fr"],
@@ -22,7 +21,7 @@ i18n
         interpolation: {
             escapeValue: false,
         },
-        debug: true,
+        debug: needsDebug(),
         react: {
             useSuspense: true,
         },

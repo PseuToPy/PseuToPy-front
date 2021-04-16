@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import Introduction from "../pages/Introduction";
 import Editor from "../pages/Editor";
 import About from "../pages/About";
@@ -15,18 +15,20 @@ function App() {
     return (
         <Suspense fallback={<div></div>} maxDuration={2000}>
             <div className="App">
-                <BrowserRouter>
+                <HashRouter>
                     <Navigation />
-                    <Switch>
-                        <Route exact path="/" component={Introduction} />
-                        <Route path="/editor" component={Editor} />
-                        <Route path="/about" component={About} />
-                        <Route path="/cgu" component={Cgu} />
-                        <Route path="/test" component={Test} />
-                        <Route path="*" component={Error404} />
-                    </Switch>
+                    <div className="main">
+                        <Switch>
+                            <Route exact path="/" component={Introduction} />
+                            <Route path="/editor" component={Editor} />
+                            <Route path="/about" component={About} />
+                            <Route path="/cgu" component={Cgu} />
+                            <Route path="/test" component={Test} />
+                            <Route path="*" component={Error404} />
+                        </Switch>
+                    </div>
                     <Footer />
-                </BrowserRouter>
+                </HashRouter>
             </div>
         </Suspense>
     );

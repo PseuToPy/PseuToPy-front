@@ -1,4 +1,3 @@
-import react from "react";
 import Editor from "react-simple-code-editor";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import PropTypes from "prop-types";

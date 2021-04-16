@@ -8,7 +8,7 @@ import "primeflex/primeflex.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import "./assets/theme/theme.css";
-import "./i18n";
+import "./utils/i18n";
 import "./index.scss";
 
 ReactDOM.render(

@@ -14,7 +14,6 @@ import "./style.scss";
 const stringSeparator = '\r';
 
 const codeArrayToString = (code) => {
-    // console.log(code);
     return code.join(stringSeparator);
 }
 
@@ -23,7 +22,7 @@ const codeStringToArray = (code) => {
 }
 
 const Editor = () => {
-    const { i18n } = useTranslation();
+    const { i18n, t } = useTranslation();
     const dispatch = useDispatch();
     const pseutopyCode = useSelector(state => state.editor.pseutopyCode);
     const pythonCode = useSelector(state => state.editor.pythonCode);
@@ -45,10 +44,9 @@ const Editor = () => {
     const getTranslationStatusDiv = () => {
         let classNames = "editor-page-message";
 
-        console.log(translationStatus)
         if(translationStatus) {
             switch(translationStatus.status) {
-                case TranslationStatus.ERROR: classNames = `${classNames} error`;
+                case TranslationStatus.ERROR: classNames = `${classNames} error`; break;
                 default: break;
             }
         }
@@ -71,15 +69,15 @@ const Editor = () => {
                 <div className="editor-page-action-checkbox">
                     <Checkbox
                         inputId='editorPageAutoCompleteCheckbox'
-                        value='Auto-Complete'
+                        value='auto-complete'
                         checked={checkedStatus}
                         onChange={() => fold(!checkedStatus)}
                     />
                     <label htmlFor='editorPageAutoCompleteCheckbox' className='p-checkbox-label'>
-                        Auto-Complete
+                        {t("editor.autoCompleteCheckBox")}
                     </label>
                 </div>
-                <Button className="editor-page-validate" label="Validate" onClick={() => validatePseudocode()}></Button>
+                <Button className="editor-page-validate" label={t("editor.convertButton")} onClick={() => validatePseudocode()}></Button>
             </div>
             {getTranslationStatusDiv()}
         </div>

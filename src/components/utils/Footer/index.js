@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import "./style.scss";
 
 const Footer = () => {
@@ -8,22 +8,22 @@ const Footer = () => {
         <div className="footer">
             <div className="footer-list">
                 <span className="footer-item">
-                    <Link
+                    <HashLink
                         to="/about"
                         className="footer-link"
                         aria-haspopup="false"
                     >
                         {t("footer.about")}
-                    </Link>
+                    </HashLink>
                 </span>
                 <span className="footer-item">
-                    <Link
+                    <HashLink
                         to="/cgu"
                         className="footer-link"
                         aria-haspopup="false"
                     >
                         {t("footer.gcu")}
-                    </Link>
+                    </HashLink>
                 </span>
             </div>
         </div>

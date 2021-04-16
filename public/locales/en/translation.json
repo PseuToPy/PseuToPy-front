@@ -5,20 +5,22 @@
         "edit": "Editor"
     },
     "footer": {
-        "about": "About",
-        "gcu": "General Conditions of Use"
+        "about": "About Us",
+        "gcu": "General Terms of Use"
     },
     "intro": {
         "header": "Introduction"
     },
     "about": {
-        "header": "About us"
+        "header": "About Us"
     },
     "gcu": {
-        "header": "General Conditions of Use"
+        "header": "General Terms of Use"
     },
     "editor":{
-        "header": "Editor"
+        "header": "Editor",
+        "autoCompleteCheckBox": "Auto-Complete",
+        "convertButton": "Convert Code"
     },
     "error": {
         "header": "ERROR",

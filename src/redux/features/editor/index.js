@@ -2,8 +2,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { getGrammar, convertCode } from "../../../api";
 
-import TranslationStatus from "../../../model/editor/translationStatus";
-
 const sliceName = "editor";
 
 const initialState = {
