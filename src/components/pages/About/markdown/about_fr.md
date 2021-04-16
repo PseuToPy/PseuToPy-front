@@ -7,9 +7,9 @@ langage de programmation qu'il faut aussi apprendre.
 
 Un langage de programmation, comme tout autre langage naturel, est constitué d'une
 grammaire et d'un vocabulaire. Le _code_ peut être considéré comme des phrases que le
-développeur va utiliser pour parler à sa machine. Cependant, **un défaut des langages de
-programmation les plus populaires est qu'ils utilisent tous des mots issus de la langue
-anglaise**. De plus, les instructions ainsi formées sont souvent grammaticalement
+développeur va utiliser pour parler à sa machine. Cependant, **un défaut des langages de** 
+**programmation les plus populaires est qu'ils utilisent tous des mots issus de la langue** 
+**anglaise**. De plus, les instructions ainsi formées sont souvent grammaticalement
 incorrectes. Par conséquent, des personnes non anglophones peuvent trouver l'apprentissage
 d'un langage de programmation difficile puisqu'elles manipulent des mots dont elles ne
 comprennent pas forcément le sens.

@@ -7,11 +7,11 @@ const Error404 = () => {
 
     return (
         <div className="p-grid">
-            <div className="p-col-2"></div>
-            <Panel header={t("error.header")} className="p-col-8 p-shadow-4">
+            <div className="p-col-1 p-lg-2"></div>
+            <Panel header={t("error.header")} className="p-col-10 p-lg-8 p-shadow-4">
                 <h1>{t("error.message")} </h1>
             </Panel>
-            <div className="p-col-2"></div>
+            <div className="p-col-1 p-lg-2"></div>
         </div>
     );
 };
