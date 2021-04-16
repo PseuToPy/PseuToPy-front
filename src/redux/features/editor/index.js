@@ -2,11 +2,14 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { getGrammar, convertCode } from "../../../api";
 
+import TranslationStatus from "../../../model/editor/translationStatus";
+
 const sliceName = "editor";
 
 const initialState = {
     grammar: [],
     pseutopyCode: [],
+    translationStatus: null,
     pythonCode: []
 }
 
@@ -21,7 +24,6 @@ export const fetchGrammar = createAsyncThunk(
 export const convertPseudocode = createAsyncThunk(
     `${sliceName}/convert`,
     async ({instructions, language}) => {
-        console.log(instructions);
         const data = await convertCode(instructions, language);
         return data;
     }
@@ -40,7 +42,12 @@ const editorSlice = createSlice({
             state.grammar = action.payload;
         },
         [convertPseudocode.fulfilled]: (state, action) => {
-            state.pythonCode = action.payload.code;
+            const { code, message, status } = action.payload;
+            state.pythonCode = code;
+            state.translationStatus = {
+                status,
+                message
+            }
         }
     }
 });

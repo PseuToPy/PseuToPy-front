@@ -4,8 +4,25 @@
 
 .editor-page-content {
     display: flex;
+
+    .editor.code {
+        flex-grow: 2;
+    }
 }
 
-.editor {
-    width: 50%;
+.editor-page-action {
+    display: flex;
+    justify-content: flex-end;
+    .editor-page-action-checkbox {
+        margin: 10px;
+        align-self: center;
+    }
+
+    .editor-page-validate {
+        margin: 10px;
+    }
+}
+
+.editor-page-message.error {
+    color: crimson;
 }

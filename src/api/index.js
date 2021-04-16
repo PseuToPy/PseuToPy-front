@@ -5,15 +5,13 @@ const api = axios.create({
 })
 
 export async function convertCode(instructions, language) {
-    const { data, status } = await api.post(`/convert/${language}`, {
+    const { data } = await api.post(`/convert/${language}`, {
         instructions
     });
-    console.log(data, status);
     return data;
 }
 
 export async function getGrammar(language) {
-    const { data, status } = await api.get(`/grammar/${language}`);
-    console.log(data, status);
+    const { data } = await api.get(`/grammar/${language}`);
     return data;
 }
