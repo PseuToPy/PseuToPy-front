@@ -18,7 +18,9 @@
         "header": "Conditions Générales d'Utilisation"
     },
     "editor":{
-        "header": "Éditeur"
+        "header": "Éditeur",
+        "autoCompleteCheckBox": "Complétion Auto",
+        "convertButton": "Convertir le code"
     },
     "error": {
         "header": "ERREUR",

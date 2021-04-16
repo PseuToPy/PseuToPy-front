@@ -1,19 +1,18 @@
 .footer {
-    background-color: var(--surface-b);
+    background-color: var(--primary-color);
     bottom: 0px;
     left: 0px;
     right: 0px;
     height: 50px;
     width: 100%;
-    position: fixed;
     text-align: center;
+    bottom: 0;
+    flex-shrink: 0;
 }
 
 .footer-item {
     margin-left: 10px;
     margin-right: 10px;
-    height: 50px;
-    line-height: 50px;
     text-align: center;
 }
 
@@ -27,5 +26,8 @@
 
 .footer-list {
     height: 100%;
-    display: contents;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }

@@ -10,7 +10,7 @@ const Introduction = () => {
     const { t } = useTranslation();
 
     return (
-        <div className="p-grid">
+        <div className="intro p-grid">
             <div className="p-col-1 p-lg-2"></div>
             <Panel header={t("intro.header")} className="p-col-10 p-lg-8 p-shadow-4">
                 <button onClick={() => dispatch(down(2))}>

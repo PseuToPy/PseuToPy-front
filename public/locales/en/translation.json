@@ -18,7 +18,9 @@
         "header": "General Terms of Use"
     },
     "editor":{
-        "header": "Editor"
+        "header": "Editor",
+        "autoCompleteCheckBox": "Auto-Complete",
+        "convertButton": "Convert Code"
     },
     "error": {
         "header": "ERROR",

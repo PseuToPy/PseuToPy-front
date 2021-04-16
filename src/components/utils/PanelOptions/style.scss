@@ -1,0 +1,25 @@
+.panel-options {
+    $panelWidth: 280px;
+    $buttonWidth: 20px;
+
+    & {
+        display: flex;
+
+        .panel-options-accordion {
+            display: none;
+            width: $panelWidth;
+        }
+    
+        .panel-options-button {
+            width: $buttonWidth;
+            text-align: center;
+            padding: 0;
+        }
+    }
+
+    &.panel-opened {
+        .panel-options-accordion {
+            display: block;
+        }
+    }
+}

@@ -20,10 +20,7 @@
             $lineContentPaddingLeft;
         $paddingTopBot: $globalPadding;
         padding: $paddingTopBot $paddingSide !important;
-    }
-
-    .editor-container {
-        text-align: left;
+        text-align: left !important;
 
         & .token-line {
             line-height: 1.3em;

@@ -6,15 +6,18 @@ body {
         "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(to bottom, #fff, #ddd);
     height: 100%;
     width: 100%;
-    overflow-x: hidden;
-    background: linear-gradient(to bottom, #fff, #ddd);
+    overflow: hidden;
 }
 
 #root {
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
 }
 
 code,

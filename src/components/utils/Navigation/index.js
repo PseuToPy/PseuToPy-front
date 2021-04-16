@@ -44,7 +44,7 @@ const Navigation = () => {
 
     
     return (
-        <Menubar model={items} start={start} end={end} />
+        <Menubar className="navbar" model={items} start={start} end={end} />
     );
     
 };
