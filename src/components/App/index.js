@@ -9,9 +9,14 @@ import Navigation from "../utils/Navigation";
 import Footer from "../utils/Footer";
 import { Suspense } from "react";
 
+import { runPython } from "../../utils/skulpt";
 import "./style.scss";
 
 function App() {
+    const test = `print(7/2)`;
+
+    runPython(test, console.log);
+
     return (
         <Suspense fallback={<div></div>} maxDuration={2000}>
             <div className="App">

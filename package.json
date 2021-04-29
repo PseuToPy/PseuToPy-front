@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
+    "classnames": "^2.2.6",
     "i18next": "^20.1.0",
     "i18next-http-backend": "^1.2.1",
     "markdown-to-jsx": "^7.1.2",
@@ -15,7 +16,6 @@
     "primeflex": "^2.0.0",
     "primeicons": "^4.1.0",
     "primereact": "^6.1.0",
-    "classnames": "^2.2.6",
     "prism-react-renderer": "^1.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -26,6 +26,7 @@
     "react-scripts": "4.0.3",
     "react-simple-code-editor": "^0.11.0",
     "react-transition-group": "^4.4.1",
+    "skulpt": "^1.2.0",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
