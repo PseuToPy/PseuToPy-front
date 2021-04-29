@@ -33,21 +33,31 @@ const Editor = () => {
     const [checkedStatus, fold] = useState(false);
     const toast = useRef(null);
 
+    /**
+     * Permet d'afficher un Toast
+     * Severity: info, success, warn, error
+     * Title: titre du Toast
+     * Message: texte a afficher dans le Toast
+     * Life: temps d'apparition en miliseconds
+     */
     const showToast = (toastRef, severity, title, message, life) => {
         toastRef.current.show({severity: severity, summary: title, detail: message, life: life});
     }
 
     useEffect(() => {
         if(requestUpdate) {
-            if(translationStatus.status === "SUCCESS"){
-                showToast(toast,"success","Convert code",translationStatus ? translationStatus.message : '',10000);
+            if(translationStatus.status === TranslationStatus.SUCCESS){
+                showToast(toast,"success","Convert Code",translationStatus ? translationStatus.message : '',5000);
+            }
+            else if(translationStatus.status === TranslationStatus.ERROR) {
+                showToast(toast,"error","Convert Code",translationStatus ? translationStatus.message : '',10000);
             }
             else {
-                showToast(toast,"error","Convert code",translationStatus ? translationStatus.message : '',10000);
+                showToast(toast,"warn","Convert Code",translationStatus ? translationStatus.message : '',10000);
             }
             dispatch(setRequestUpdate(false));
         }
-    }, [requestUpdate, translationStatus, showToast])
+    }, [requestUpdate, translationStatus, dispatch])
 
 
     const validatePseudocode = () => {
