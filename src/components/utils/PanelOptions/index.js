@@ -19,7 +19,7 @@ const PanelOptions = () => {
     const grammar = useSelector(state => state.editor.grammar);
 
     const [activeIndex, setActiveIndex] = useState([]);
-    const [opened, fold] = useState(false);
+    const [opened, fold] = useState(true);
 
     useEffect(() => {
         dispatch(fetchGrammar(i18n.language));

@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from "primereact/button";
+import { Toast } from 'primereact/toast';
 import { Checkbox } from "primereact/checkbox";
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import CodeEditor from "../../utils/CodeEditor";
 import CodeViewer from "../../utils/CodeViewer";
 import PanelOptions from "../../utils/PanelOptions";
-import { convertPseudocode, writePseutopy } from "../../../redux/features/editor";
+import { convertPseudocode, writePseutopy , setRequestUpdate} from "../../../redux/features/editor";
 
 import TranslationStatus from "../../../model/editor/translationStatus";
 import "./style.scss";
@@ -27,8 +28,27 @@ const Editor = () => {
     const pseutopyCode = useSelector(state => state.editor.pseutopyCode);
     const pythonCode = useSelector(state => state.editor.pythonCode);
     const translationStatus = useSelector(state => state.editor.translationStatus);
+    const requestUpdate = useSelector(state => state.editor.requestUpdate);
 
     const [checkedStatus, fold] = useState(false);
+    const toast = useRef(null);
+
+    const showToast = (toastRef, severity, title, message, life) => {
+        toastRef.current.show({severity: severity, summary: title, detail: message, life: life});
+    }
+
+    useEffect(() => {
+        if(requestUpdate) {
+            if(translationStatus.status === "SUCCESS"){
+                showToast(toast,"success","Convert code",translationStatus ? translationStatus.message : '',10000);
+            }
+            else {
+                showToast(toast,"error","Convert code",translationStatus ? translationStatus.message : '',10000);
+            }
+            dispatch(setRequestUpdate(false));
+        }
+    }, [requestUpdate, translationStatus, showToast])
+
 
     const validatePseudocode = () => {
         dispatch(convertPseudocode({ 
@@ -40,23 +60,7 @@ const Editor = () => {
     const writePseudocode = (newCode) => {
         dispatch(writePseutopy(codeStringToArray(newCode)));
     }
-
-    const getTranslationStatusDiv = () => {
-        let classNames = "editor-page-message";
-
-        if(translationStatus) {
-            switch(translationStatus.status) {
-                case TranslationStatus.ERROR: classNames = `${classNames} error`; break;
-                default: break;
-            }
-        }
-        
-        return (
-            <div className={classNames}>
-                {translationStatus ? translationStatus.message : ''}
-            </div>
-        )
-    }
+    
 
     return (
         <div className="editor-page">
@@ -79,7 +83,7 @@ const Editor = () => {
                 </div>
                 <Button className="editor-page-validate" label={t("editor.convertButton")} onClick={() => validatePseudocode()}></Button>
             </div>
-            {getTranslationStatusDiv()}
+            <Toast ref={toast}/>
         </div>
     );
 };
