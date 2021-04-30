@@ -37,7 +37,7 @@ const PanelOptions = () => {
                                     {rule.samples.map(
                                         (sample) => (
                                             <div key={sample}>
-                                                <CodeViewer code={sample} withLineNumbers={false}/>
+                                                <CodeViewer code={sample} withLineNumbers={sample.includes("\n")}/>
                                             </div>
                                         )
                                     )}

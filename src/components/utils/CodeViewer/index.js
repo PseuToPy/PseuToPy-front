@@ -5,8 +5,7 @@ import theme from "prism-react-renderer/themes/github";
 
 import "./style.scss";
 
-const CodeViewer = ({ language = "", code = "", withLineNumbers = true }) => {
-
+const CodeViewer = ({ language = "", code = "", withLineNumbers = false }) => {
     return (
         <Highlight
             {...defaultProps}
@@ -15,14 +14,18 @@ const CodeViewer = ({ language = "", code = "", withLineNumbers = true }) => {
             language={language}
         >
             {({ className, style, tokens, getLineProps, getTokenProps }) => (
-                <div className="editor code" style={style}>
+                <pre className="editor code" style={style}>
                     {tokens.map((line, i) => (
                         <div
                             key={i}
                             {...getLineProps({ line, key: i })}
                             className="editor-line"
                         >
-                            { withLineNumbers ? <span className="editor-line-number">{i + 1}</span> : null }
+                            {withLineNumbers ? (
+                                <span className="editor-line-number">
+                                    {i + 1}
+                                </span>
+                            ) : null}
                             <span className="editor-line-content">
                                 {line.map((token, key) => (
                                     <span
@@ -33,7 +36,7 @@ const CodeViewer = ({ language = "", code = "", withLineNumbers = true }) => {
                             </span>
                         </div>
                     ))}
-                </div>
+                </pre>
             )}
         </Highlight>
     );
