@@ -19,14 +19,14 @@ const initPython = outputFn => {
     });
 };
 
-const runPython = async (code, outputFn) => {
+const runPython = async (code, outputFn, errorFn) => {
     initPython(outputFn);
     try {
         await Sk.misceval.asyncToPromise(() =>
             Sk.importMainWithBody("<stdin>", false, code, true)
         );
     } catch (error) {
-        console.error(error.toString());
+        errorFn(error);
     }
 };
 

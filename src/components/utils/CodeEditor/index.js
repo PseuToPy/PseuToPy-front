@@ -4,9 +4,14 @@ import PropTypes from "prop-types";
 import theme from "prism-react-renderer/themes/github";
 
 import "./style.scss";
+import { Fragment } from "react";
 
-const CodeEditor = ({ language = "", code = "", onWrite, readonly = false}) => {
-
+const CodeEditor = ({
+    language = "",
+    code = "",
+    onWrite = () => {},
+    readonly = false,
+}) => {
     const highlight = rawCode => (
         <Highlight
             {...defaultProps}
@@ -15,7 +20,7 @@ const CodeEditor = ({ language = "", code = "", onWrite, readonly = false}) => {
             language={language}
         >
             {({ className, style, tokens, getLineProps, getTokenProps }) => (
-                <div className="editor-container">
+                <Fragment>
                     {tokens.map((line, i) => (
                         <div
                             key={i}
@@ -33,7 +38,7 @@ const CodeEditor = ({ language = "", code = "", onWrite, readonly = false}) => {
                             </span>
                         </div>
                     ))}
-                </div>
+                </Fragment>
             )}
         </Highlight>
     );

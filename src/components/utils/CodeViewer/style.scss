@@ -10,6 +10,8 @@
     }
 
     & {
+        overflow: auto hidden;
+        margin: 0;
         box-sizing: "border-box";
         padding: $globalPadding !important;
         border: 1px solid grey;

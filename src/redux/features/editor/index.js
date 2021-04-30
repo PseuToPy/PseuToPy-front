@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { getGrammar, convertCode } from "../../../api";
 
@@ -8,32 +8,39 @@ const initialState = {
     grammar: [],
     pseutopyCode: [],
     translationStatus: null,
-    pythonCode: []
-}
+    pythonCode: [],
+    console: [],
+};
 
 export const fetchGrammar = createAsyncThunk(
     `${sliceName}/grammar`,
-    async (language) => {
+    async language => {
         const data = await getGrammar(language);
         return data;
     }
-)
+);
 
 export const convertPseudocode = createAsyncThunk(
     `${sliceName}/convert`,
-    async ({instructions, language}) => {
+    async ({ instructions, language }) => {
         const data = await convertCode(instructions, language);
         return data;
     }
-)
+);
 
 const editorSlice = createSlice({
     name: sliceName,
     initialState,
     reducers: {
+        appendLog: (state, action) => {
+            state.console = [...state.console, action.payload];
+        },
+        clearLogs: state => {
+            state.console = [];
+        },
         writePseutopy: (state, action) => {
             state.pseutopyCode = action.payload;
-        }
+        },
     },
     extraReducers: {
         [fetchGrammar.fulfilled]: (state, action) => {
@@ -44,11 +51,11 @@ const editorSlice = createSlice({
             state.pythonCode = code;
             state.translationStatus = {
                 status,
-                message
-            }
-        }
-    }
+                message,
+            };
+        },
+    },
 });
 
-export const { writePseutopy } = editorSlice.actions;
+export const { appendLog, clearLogs, writePseutopy } = editorSlice.actions;
 export default editorSlice.reducer;
