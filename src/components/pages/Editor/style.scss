@@ -23,6 +23,7 @@
     }
 }
 
-.editor-page-message.error {
+.editor-page-message.error,
+.log-message.log-error {
     color: crimson;
 }

@@ -22,15 +22,6 @@
         padding: $paddingTopBot $paddingSide !important;
     }
 
-    .editor-container {
-        text-align: left;
-
-        & .token-line {
-            line-height: 1.3em;
-            height: 1.3em;
-        }
-    }
-
     .editor-line {
         display: table-row;
     }

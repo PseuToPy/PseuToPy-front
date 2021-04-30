@@ -20,7 +20,9 @@
     "editor":{
         "header": "Éditeur",
         "autoCompleteCheckBox": "Complétion Auto",
-        "convertButton": "Convertir le code"
+        "convertButton": "Convertir le code",
+        "executeButton": "Exécuter le code",
+        "clearConsoleButton": "Vider la console"
     },
     "error": {
         "header": "ERREUR",
