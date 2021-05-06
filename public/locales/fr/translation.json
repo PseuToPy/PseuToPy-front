@@ -27,7 +27,7 @@
         "toastConvertButtonError":"Erreur de syntaxe",
         "toastExecuteButton":"Exécution du code en cours...",
         "toastClearButton":"La console a été vidée",
-        "consoleMsg":"Pour écrire dans la console, il faut utiliser des fonctions d'affichage comme print('My message')"
+        "consoleMsg":"Pour écrire dans la console, il faut utiliser des fonctions d'affichage comme print('Mon message')"
     },
     "error": {
         "header": "ERREUR",
