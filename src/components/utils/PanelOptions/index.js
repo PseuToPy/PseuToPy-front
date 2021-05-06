@@ -25,9 +25,9 @@ const PanelOptions = () => {
         return grammar.map(
             (category) =>
                 <TabPanel header={category.category} key={category.category} className="panel-options-tabpanel">
-                    <div className="p-grid">
+                    <div className="p-d-flex p-flex-wrap">
                         {category.rules.map((rule) =>
-                            <div key={rule.rule} className="p-col-6">
+                            <div key={rule.rule} className="p-mr-4">
                                 <h3>{rule.rule}</h3>
                                 <div>
                                     {rule.samples.map(
