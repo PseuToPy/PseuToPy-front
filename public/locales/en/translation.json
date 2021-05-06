@@ -22,7 +22,12 @@
         "autoCompleteCheckBox": "Auto-Complete",
         "convertButton": "Convert code",
         "executeButton": "Execute code",
-        "clearConsoleButton": "Clear console"
+        "clearButton": "Clear console",
+        "toastConvertButton":"Code conversion completed",
+        "toastConvertButtonError":"Syntax problem",
+        "toastExecuteButton":"Running code in progress...",
+        "toastClearButton":"The console has been emptied",
+        "consoleMsg":"To fill the console use a function such as print('My message')"
     },
     "error": {
         "header": "ERROR",

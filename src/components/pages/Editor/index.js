@@ -51,17 +51,17 @@ const Editor = () => {
     useEffect(() => {
         if (requestUpdate) {
             if (translationStatus.status === MessageLevel.SUCCESS) {
-                showToast(toast, "success", "Convert Code", translationStatus ? translationStatus.message : '', 5000);
+                showToast(toast, "success", t("editor.convertButton"), t("editor.toastConvertButton"), 5000);
             }
             else if (translationStatus.status === MessageLevel.ERROR) {
-                showToast(toast, "error", "Convert Code", translationStatus ? translationStatus.message : '', 10000);
+                showToast(toast, "error", t("editor.convertButton"), t("editor.toastConvertButtonError"), 5000);
             }
             else {
-                showToast(toast, "warn", "Convert Code", translationStatus ? translationStatus.message : '', 10000);
+                showToast(toast, "warn", t("editor.convertButton"), translationStatus ? translationStatus.message : '', 5000);
             }
             dispatch(setRequestUpdate(false));
         }
-    }, [requestUpdate, translationStatus, dispatch])
+    }, [requestUpdate, translationStatus, dispatch, t])
 
 
     const validatePseudocode = () => {
@@ -78,6 +78,7 @@ const Editor = () => {
     };
 
     const executePython = () => {
+        showToast(toast, "success", t("editor.executeButton"), t("editor.toastExecuteButton"), 2000);
         const onOutput = output => {
             dispatch(
                 appendLog({ type: MessageLevel.SUCCESS, message: output })
@@ -96,6 +97,7 @@ const Editor = () => {
 
     const clearConsole = () => {
         dispatch(clearLogs());
+        showToast(toast, "warn", t("editor.clearButton"), t("editor.toastClearButton"), 2000);
     };
 
 
@@ -103,8 +105,7 @@ const Editor = () => {
         return logs.map((log, index) => (
             <div
                 key={index}
-                className={`log-message ${log.status === MessageLevel.ERROR ? "log-error" : ""
-                    }`}
+                className={`log-message ${log.status === MessageLevel.ERROR ? "log-error" : ""}`}
             >
                 {log.message}
             </div>
@@ -126,7 +127,6 @@ const Editor = () => {
                     label={t("editor.convertButton")}
                     onClick={() => validatePseudocode()}
                 ></Button>
-                <Toast ref={toast} />
             </Panel>
             <Panel header={"Python"} className="p-col-12 p-lg-6 p-shadow-4">
                 <div className="content">
@@ -143,17 +143,18 @@ const Editor = () => {
                 ></Button>
                 <Button
                     className="p-button-outlined p-m-2 p-button-warning"
-                    label={t("editor.clearConsoleButton")}
+                    label={t("editor.clearButton")}
                     onClick={() => clearConsole()}
                 ></Button>
             </Panel>
             <Panel header={"Console"} className="p-col-12 p-shadow-4 p-mt-3">
                 <div className="console content">
-                    <div className="log-message">To fill the console use a function such as print("My message")</div>
+                    <div className="log-message">{t("editor.consoleMsg")}</div>
                     <hr></hr>
                     {getLogs()}
                 </div>
             </Panel>
+            <Toast ref={toast} />
         </div>
     );
 

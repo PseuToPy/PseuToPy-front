@@ -50,8 +50,8 @@ const PanelOptions = () => {
             <TabView className={`panel-options ${opened ? 'panel-opened' : ''}`}>
                 {renderOptions()}
             </TabView>
-            <center>
-                <Button className="panel-options-button" label={opened ? <i className="pi pi-arrow-up"></i> : <i className="pi pi-arrow-down"></i>} onClick={() => fold(!opened)} />
+            <center className="height-0px">
+                <Button className="p-button-rounded panel-options-button" label={opened ? <i className="pi pi-arrow-up"></i> : <i className="pi pi-arrow-down"></i>} onClick={() => fold(!opened)} />
             </center>
         </Panel>
     );
