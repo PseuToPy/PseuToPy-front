@@ -1,25 +1,28 @@
 .panel-options {
-    $panelWidth: 280px;
-    $buttonWidth: 20px;
+    display: none;
+    height: 30vh;
+    overflow-y: auto;
 
     & {
-        display: flex;
-
-        .panel-options-accordion {
+        .p-toggleable-content {
             display: none;
-            width: $panelWidth;
         }
-    
-        .panel-options-button {
-            width: $buttonWidth;
-            text-align: center;
-            padding: 0;
+        .panel-options-tabpanel {
+            display: block;
         }
     }
 
     &.panel-opened {
-        .panel-options-accordion {
-            display: block;
-        }
+        display: block;
     }
+}
+
+.height-0px {
+    height: 0px;
+}
+
+.panel-options-button {
+    top: 10px;
+    font-size: small !important;
+    padding: 4px !important;
 }

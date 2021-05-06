@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef } from 'react';
 import { Button } from "primereact/button";
-import { Checkbox } from "primereact/checkbox";
+import { Toast } from 'primereact/toast';
+import { Panel } from 'primereact/panel';
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import CodeEditor from "../../utils/CodeEditor";
@@ -10,8 +11,8 @@ import {
     clearLogs,
     convertPseudocode,
     writePseutopy,
+    setRequestUpdate
 } from "../../../redux/features/editor";
-
 import MessageLevel from "../../../model/editor/translationStatus";
 import "./style.scss";
 import { runPython } from "../../../utils/skulpt";
@@ -32,11 +33,36 @@ const Editor = () => {
     const logs = useSelector(state => state.editor.console);
     const pseutopyCode = useSelector(state => state.editor.pseutopyCode);
     const pythonCode = useSelector(state => state.editor.pythonCode);
-    const translationStatus = useSelector(
-        state => state.editor.translationStatus
-    );
+    const translationStatus = useSelector(state => state.editor.translationStatus);
+    const requestUpdate = useSelector(state => state.editor.requestUpdate);
+    const toast = useRef(null);
 
-    const [checkedStatus, fold] = useState(false);
+    /**
+     * Permet d'afficher un Toast
+     * Severity: info, success, warn, error
+     * Title: titre du Toast
+     * Message: texte a afficher dans le Toast
+     * Life: temps d'apparition en miliseconds
+     */
+    const showToast = (toastRef, severity, title, message, life) => {
+        toastRef.current.show({ severity: severity, summary: title, detail: message, life: life });
+    }
+
+    useEffect(() => {
+        if (requestUpdate) {
+            if (translationStatus.status === MessageLevel.SUCCESS) {
+                showToast(toast, "success", t("editor.convertButton"), t("editor.toastConvertButton"), 5000);
+            }
+            else if (translationStatus.status === MessageLevel.ERROR) {
+                showToast(toast, "error", t("editor.convertButton"), t("editor.toastConvertButtonError"), 5000);
+            }
+            else {
+                showToast(toast, "warn", t("editor.convertButton"), translationStatus ? translationStatus.message : '', 5000);
+            }
+            dispatch(setRequestUpdate(false));
+        }
+    }, [requestUpdate, translationStatus, dispatch, t])
+
 
     const validatePseudocode = () => {
         dispatch(
@@ -52,6 +78,7 @@ const Editor = () => {
     };
 
     const executePython = () => {
+        showToast(toast, "success", t("editor.executeButton"), t("editor.toastExecuteButton"), 2000);
         const onOutput = output => {
             dispatch(
                 appendLog({ type: MessageLevel.SUCCESS, message: output })
@@ -70,35 +97,15 @@ const Editor = () => {
 
     const clearConsole = () => {
         dispatch(clearLogs());
+        showToast(toast, "warn", t("editor.clearButton"), t("editor.toastClearButton"), 2000);
     };
 
-    const getTranslationStatusDiv = () => {
-        let classNames = "editor-page-message";
-
-        if (translationStatus) {
-            switch (translationStatus.status) {
-                case MessageLevel.ERROR:
-                    classNames = `${classNames} error`;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        return (
-            <div className={classNames}>
-                {translationStatus ? translationStatus.message : ""}
-            </div>
-        );
-    };
 
     const getLogs = () => {
         return logs.map((log, index) => (
             <div
                 key={index}
-                className={`log-message ${
-                    log.status === MessageLevel.ERROR ? "log-error" : ""
-                }`}
+                className={`log-message ${log.status === MessageLevel.ERROR ? "log-error" : ""}`}
             >
                 {log.message}
             </div>
@@ -106,56 +113,51 @@ const Editor = () => {
     };
 
     return (
-        <div className="editor-page">
-            <div className="editor-page-content">
-                <PanelOptions />
-                <CodeEditor
-                    code={codeArrayToString(pseutopyCode)}
-                    onWrite={newCode => writePseudocode(newCode)}
-                />
-                <CodeEditor
-                    language="python"
-                    code={codeArrayToString(pythonCode)}
-                    readonly
-                />
-            </div>
-            <div className="editor-page-action">
-                <div className="editor-page-action-checkbox">
-                    <Checkbox
-                        inputId="editorPageAutoCompleteCheckbox"
-                        value="auto-complete"
-                        checked={checkedStatus}
-                        onChange={() => fold(!checkedStatus)}
+        <div className="p-grid">
+            <PanelOptions />
+            <Panel header={"PseuToCode"} className="p-col-12 p-lg-6 p-shadow-4">
+                <div className="content">
+                    <CodeEditor
+                        code={codeArrayToString(pseutopyCode)}
+                        onWrite={newCode => writePseudocode(newCode)}
                     />
-                    <label
-                        htmlFor="editorPageAutoCompleteCheckbox"
-                        className="p-checkbox-label"
-                    >
-                        {t("editor.autoCompleteCheckBox")}
-                    </label>
                 </div>
                 <Button
-                    className="editor-page-validate"
+                    className="p-button-outlined p-m-2"
                     label={t("editor.convertButton")}
                     onClick={() => validatePseudocode()}
                 ></Button>
-            </div>
-            {getTranslationStatusDiv()}
-            <div>
+            </Panel>
+            <Panel header={"Python"} className="p-col-12 p-lg-6 p-shadow-4">
+                <div className="content">
+                    <CodeEditor
+                        language="python"
+                        code={codeArrayToString(pythonCode)}
+                        readonly
+                    />
+                </div>
                 <Button
-                    className="editor-page-execute-py"
+                    className="p-button-outlined p-m-2"
                     label={t("editor.executeButton")}
                     onClick={() => executePython()}
                 ></Button>
                 <Button
-                    className="editor-page-clear-console"
-                    label={t("editor.clearConsoleButton")}
+                    className="p-button-outlined p-m-2 p-button-warning"
+                    label={t("editor.clearButton")}
                     onClick={() => clearConsole()}
                 ></Button>
-                <div className="editor-console">{getLogs()}</div>
-            </div>
+            </Panel>
+            <Panel header={"Console"} className="p-col-12 p-shadow-4 p-mt-3">
+                <div className="console content">
+                    <div className="log-message">{t("editor.consoleMsg")}</div>
+                    <hr></hr>
+                    {getLogs()}
+                </div>
+            </Panel>
+            <Toast ref={toast} />
         </div>
     );
+
 };
 
 export default Editor;

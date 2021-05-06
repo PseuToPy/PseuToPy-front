@@ -9,6 +9,7 @@ const initialState = {
     pseutopyCode: [],
     translationStatus: null,
     pythonCode: [],
+    requestUpdate: false,
     console: [],
 };
 
@@ -41,6 +42,9 @@ const editorSlice = createSlice({
         writePseutopy: (state, action) => {
             state.pseutopyCode = action.payload;
         },
+        setRequestUpdate: (state, action) => {
+            state.requestUpdate = action.payload;
+        }
     },
     extraReducers: {
         [fetchGrammar.fulfilled]: (state, action) => {
@@ -51,11 +55,12 @@ const editorSlice = createSlice({
             state.pythonCode = code;
             state.translationStatus = {
                 status,
-                message,
+                message
             };
-        },
-    },
+            state.requestUpdate = true;
+        }
+    }
 });
 
-export const { appendLog, clearLogs, writePseutopy } = editorSlice.actions;
+export const {  appendLog, clearLogs, writePseutopy, setRequestUpdate } = editorSlice.actions;
 export default editorSlice.reducer;
