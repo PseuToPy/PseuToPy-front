@@ -114,37 +114,45 @@ const Editor = () => {
     return (
         <div className="p-grid">
             <PanelOptions />
-            <Panel id="pseuToCode" header={"PseuToCode"} className="p-col-12 p-lg-6 p-shadow-4">
-                <CodeEditor
-                    code={codeArrayToString(pseutopyCode)}
-                    onWrite={newCode => writePseudocode(newCode)}
-                />
+            <Panel header={"PseuToCode"} className="p-col-12 p-lg-6 p-shadow-4">
+                <div className="content">
+                    <CodeEditor
+                        code={codeArrayToString(pseutopyCode)}
+                        onWrite={newCode => writePseudocode(newCode)}
+                    />
+                </div>
                 <Button
-                    className="editor-page-validate"
+                    className="p-button-outlined p-m-2"
                     label={t("editor.convertButton")}
                     onClick={() => validatePseudocode()}
                 ></Button>
                 <Toast ref={toast} />
             </Panel>
             <Panel header={"Python"} className="p-col-12 p-lg-6 p-shadow-4">
-                <CodeEditor
-                    language="python"
-                    code={codeArrayToString(pythonCode)}
-                    readonly
-                />
-            </Panel>
-            <Panel header={"Console"} className="p-col-12 p-shadow-4 p-mt-3">
+                <div className="content">
+                    <CodeEditor
+                        language="python"
+                        code={codeArrayToString(pythonCode)}
+                        readonly
+                    />
+                </div>
                 <Button
-                    className="editor-page-execute-py "
+                    className="p-button-outlined p-m-2"
                     label={t("editor.executeButton")}
                     onClick={() => executePython()}
                 ></Button>
                 <Button
-                    className="editor-page-clear-console"
+                    className="p-button-outlined p-m-2 p-button-warning"
                     label={t("editor.clearConsoleButton")}
                     onClick={() => clearConsole()}
                 ></Button>
-                <div className="editor-console">{getLogs()}</div>
+            </Panel>
+            <Panel header={"Console"} className="p-col-12 p-shadow-4 p-mt-3">
+                <div className="console content">
+                    <div className="log-message">To fill the console use a function such as print("My message")</div>
+                    <hr></hr>
+                    {getLogs()}
+                </div>
             </Panel>
         </div>
     );
