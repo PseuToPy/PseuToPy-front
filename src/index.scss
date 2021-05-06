@@ -33,3 +33,24 @@ a {
 a:hover {
     color: var(--secondary-color);
 }
+
+body * {
+    scrollbar-color: var(--primary-color) #eee;
+    scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+::-webkit-scrollbar-track {
+    background: linear-gradient(to bottom, #eee, #ddd);
+}

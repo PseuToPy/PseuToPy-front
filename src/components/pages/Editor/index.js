@@ -1,12 +1,11 @@
-import React, { /*useState,*/ useEffect, useRef } from 'react'; // Désactivé car la fonctionnalité avancée n'est pas encore dev
+import React, { useEffect, useRef } from 'react';
 import { Button } from "primereact/button";
 import { Toast } from 'primereact/toast';
-// import { Checkbox } from "primereact/checkbox"; Désactivé car la fonctionnalité avancée n'est pas encore dev
+import { Panel } from 'primereact/panel';
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import CodeEditor from "../../utils/CodeEditor";
 import PanelOptions from "../../utils/PanelOptions";
-
 import {
     appendLog,
     clearLogs,
@@ -14,7 +13,6 @@ import {
     writePseutopy,
     setRequestUpdate
 } from "../../../redux/features/editor";
-
 import MessageLevel from "../../../model/editor/translationStatus";
 import "./style.scss";
 import { runPython } from "../../../utils/skulpt";
@@ -37,8 +35,6 @@ const Editor = () => {
     const pythonCode = useSelector(state => state.editor.pythonCode);
     const translationStatus = useSelector(state => state.editor.translationStatus);
     const requestUpdate = useSelector(state => state.editor.requestUpdate);
-
-    // const [checkedStatus, fold] = useState(false); Désactivé car la fonctionnalité avancée n'est pas encore dev
     const toast = useRef(null);
 
     /**
@@ -49,19 +45,19 @@ const Editor = () => {
      * Life: temps d'apparition en miliseconds
      */
     const showToast = (toastRef, severity, title, message, life) => {
-        toastRef.current.show({severity: severity, summary: title, detail: message, life: life});
+        toastRef.current.show({ severity: severity, summary: title, detail: message, life: life });
     }
 
     useEffect(() => {
-        if(requestUpdate) {
-            if(translationStatus.status === MessageLevel.SUCCESS){
-                showToast(toast,"success","Convert Code",translationStatus ? translationStatus.message : '',5000);
+        if (requestUpdate) {
+            if (translationStatus.status === MessageLevel.SUCCESS) {
+                showToast(toast, "success", "Convert Code", translationStatus ? translationStatus.message : '', 5000);
             }
-            else if(translationStatus.status === MessageLevel.ERROR) {
-                showToast(toast,"error","Convert Code",translationStatus ? translationStatus.message : '',10000);
+            else if (translationStatus.status === MessageLevel.ERROR) {
+                showToast(toast, "error", "Convert Code", translationStatus ? translationStatus.message : '', 10000);
             }
             else {
-                showToast(toast,"warn","Convert Code",translationStatus ? translationStatus.message : '',10000);
+                showToast(toast, "warn", "Convert Code", translationStatus ? translationStatus.message : '', 10000);
             }
             dispatch(setRequestUpdate(false));
         }
@@ -107,9 +103,8 @@ const Editor = () => {
         return logs.map((log, index) => (
             <div
                 key={index}
-                className={`log-message ${
-                    log.status === MessageLevel.ERROR ? "log-error" : ""
-                }`}
+                className={`log-message ${log.status === MessageLevel.ERROR ? "log-error" : ""
+                    }`}
             >
                 {log.message}
             </div>
@@ -117,47 +112,30 @@ const Editor = () => {
     };
 
     return (
-        <div className="editor-page">
-            <div className="editor-page-content">
-                <PanelOptions />
+        <div className="p-grid">
+            <PanelOptions />
+            <Panel id="pseuToCode" header={"PseuToCode"} className="p-col-12 p-lg-6 p-shadow-4">
                 <CodeEditor
                     code={codeArrayToString(pseutopyCode)}
                     onWrite={newCode => writePseudocode(newCode)}
                 />
-                <CodeEditor
-                    language="python"
-                    code={codeArrayToString(pythonCode)}
-                    readonly
-                />
-            </div>
-            <div className="editor-page-action">
-                {
-                    /* Désactivé car la fonctionnalité avancée n'est pas encore dev
-                    <div className="editor-page-action-checkbox">
-                        <Checkbox
-                            inputId="editorPageAutoCompleteCheckbox"
-                            value="auto-complete"
-                            checked={checkedStatus}
-                            onChange={() => fold(!checkedStatus)}
-                        />
-                        <label
-                            htmlFor="editorPageAutoCompleteCheckbox"
-                            className="p-checkbox-label"
-                        >
-                            {t("editor.autoCompleteCheckBox")}
-                        </label>
-                    </div>*/
-                }
                 <Button
                     className="editor-page-validate"
                     label={t("editor.convertButton")}
                     onClick={() => validatePseudocode()}
                 ></Button>
-            </div>
-            <Toast ref={toast}/>
-            <div>
+                <Toast ref={toast} />
+            </Panel>
+            <Panel header={"Python"} className="p-col-12 p-lg-6 p-shadow-4">
+                <CodeEditor
+                    language="python"
+                    code={codeArrayToString(pythonCode)}
+                    readonly
+                />
+            </Panel>
+            <Panel header={"Console"} className="p-col-12 p-shadow-4 p-mt-3">
                 <Button
-                    className="editor-page-execute-py"
+                    className="editor-page-execute-py "
                     label={t("editor.executeButton")}
                     onClick={() => executePython()}
                 ></Button>
@@ -167,9 +145,10 @@ const Editor = () => {
                     onClick={() => clearConsole()}
                 ></Button>
                 <div className="editor-console">{getLogs()}</div>
-            </div>
+            </Panel>
         </div>
     );
+
 };
 
 export default Editor;
