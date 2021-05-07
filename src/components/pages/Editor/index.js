@@ -5,16 +5,16 @@ import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import CodeEditor from "../../utils/CodeEditor";
 import PanelOptions from "../../utils/PanelOptions";
+
 import {
     appendLog,
     clearLogs,
     convertPseudocode,
     writePseutopy,
 } from "../../../redux/features/editor";
-
-import MessageLevel from "../../../model/editor/translationStatus";
+import MessageLevel from "../../../model/editor/messageLevel";
+import PythonWorker from "../../../worker/python.worker";
 import "./style.scss";
-import { runPython } from "../../../utils/skulpt";
 
 const stringSeparator = "\n";
 
@@ -25,6 +25,8 @@ const codeArrayToString = code => {
 const codeStringToArray = code => {
     return code.split(stringSeparator);
 };
+
+let pyWorker;
 
 const Editor = () => {
     const { i18n, t } = useTranslation();
@@ -37,6 +39,7 @@ const Editor = () => {
     );
 
     const [checkedStatus, fold] = useState(false);
+    const [pythonRunning, changePythonStatus] = useState(false);
 
     const validatePseudocode = () => {
         dispatch(
@@ -52,24 +55,34 @@ const Editor = () => {
     };
 
     const executePython = () => {
-        const onOutput = output => {
-            dispatch(
-                appendLog({ type: MessageLevel.SUCCESS, message: output })
-            );
-        };
-        const onError = error => {
-            dispatch(
-                appendLog({
-                    type: MessageLevel.ERROR,
-                    message: error.toString(),
-                })
-            );
-        };
-        runPython(codeArrayToString(pythonCode), onOutput, onError);
+        if (!pythonRunning) {
+            changePythonStatus(true);
+            if (!pyWorker) pyWorker = new PythonWorker();
+
+            pyWorker.onmessage = ({ data }) => {
+                if (data.end) {
+                    stopPythonExecution();
+                } else {
+                    dispatch(
+                        appendLog({ type: data.type, message: data.message })
+                    );
+                }
+            };
+
+            pyWorker.postMessage({
+                code: codeArrayToString(pythonCode),
+            });
+        }
     };
 
     const clearConsole = () => {
         dispatch(clearLogs());
+    };
+
+    const stopPythonExecution = () => {
+        pyWorker.terminate();
+        pyWorker = null;
+        changePythonStatus(false);
     };
 
     const getTranslationStatusDiv = () => {
@@ -146,11 +159,17 @@ const Editor = () => {
                     className="editor-page-execute-py"
                     label={t("editor.executeButton")}
                     onClick={() => executePython()}
+                    disabled={pythonRunning}
                 ></Button>
                 <Button
                     className="editor-page-clear-console"
                     label={t("editor.clearConsoleButton")}
                     onClick={() => clearConsole()}
+                ></Button>
+                <Button
+                    className="editor-page-stop-execution"
+                    label="Stop"
+                    onClick={() => stopPythonExecution()}
                 ></Button>
                 <div className="editor-console">{getLogs()}</div>
             </div>
