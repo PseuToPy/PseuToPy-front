@@ -9,7 +9,6 @@ const initialState = {
     pseutopyCode: [],
     translationStatus: null,
     pythonCode: [],
-    console: [],
 };
 
 export const fetchGrammar = createAsyncThunk(
@@ -32,12 +31,6 @@ const editorSlice = createSlice({
     name: sliceName,
     initialState,
     reducers: {
-        appendLog: (state, action) => {
-            state.console = [...state.console, action.payload];
-        },
-        clearLogs: state => {
-            state.console = [];
-        },
         writePseutopy: (state, action) => {
             state.pseutopyCode = action.payload;
         },
@@ -57,5 +50,5 @@ const editorSlice = createSlice({
     },
 });
 
-export const { appendLog, clearLogs, writePseutopy } = editorSlice.actions;
+export const { writePseutopy } = editorSlice.actions;
 export default editorSlice.reducer;

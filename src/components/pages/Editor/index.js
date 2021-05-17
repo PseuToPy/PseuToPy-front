@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button } from "primereact/button";
 import { Checkbox } from "primereact/checkbox";
 import { useTranslation } from "react-i18next";
@@ -7,12 +7,11 @@ import CodeEditor from "../../utils/CodeEditor";
 import PanelOptions from "../../utils/PanelOptions";
 
 import {
-    appendLog,
-    clearLogs,
     convertPseudocode,
     writePseutopy,
 } from "../../../redux/features/editor";
 import MessageLevel from "../../../model/editor/messageLevel";
+import workerCommands from "../../../model/pythonWorker/workerCommands";
 import PythonWorker from "../../../worker/python.worker";
 import "./style.scss";
 
@@ -26,12 +25,10 @@ const codeStringToArray = code => {
     return code.split(stringSeparator);
 };
 
-let pyWorker;
-
 const Editor = () => {
     const { i18n, t } = useTranslation();
     const dispatch = useDispatch();
-    const logs = useSelector(state => state.editor.console);
+    const consoleRef = useRef(null);
     const pseutopyCode = useSelector(state => state.editor.pseutopyCode);
     const pythonCode = useSelector(state => state.editor.pythonCode);
     const translationStatus = useSelector(
@@ -40,6 +37,28 @@ const Editor = () => {
 
     const [checkedStatus, fold] = useState(false);
     const [pythonRunning, changePythonStatus] = useState(false);
+
+    let pyWorker = new PythonWorker();
+    pyWorker.onmessage = ({ data }) => {
+        switch (data.type) {
+            case workerCommands.START: {
+                changePythonStatus(true);
+                break;
+            }
+            case workerCommands.LOG: {
+                consoleRef.current.appendChild(
+                    createLog(data.level, data.message)
+                );
+                break;
+            }
+            case workerCommands.STOP: {
+                stopPythonExecution();
+                break;
+            }
+            default:
+                break;
+        }
+    };
 
     const validatePseudocode = () => {
         dispatch(
@@ -54,35 +73,32 @@ const Editor = () => {
         dispatch(writePseutopy(codeStringToArray(newCode)));
     };
 
+    const createLog = (level, message) => {
+        const log = document.createElement("div");
+        log.className = `log-message ${
+            level === MessageLevel.ERROR ? "log-error" : ""
+        }`;
+        log.textContent = message;
+        return log;
+    };
+
+    const clearConsole = () => {
+        consoleRef.current.innerHTML = "";
+    };
+
     const executePython = () => {
         if (!pythonRunning) {
-            changePythonStatus(true);
-            if (!pyWorker) pyWorker = new PythonWorker();
-
-            pyWorker.onmessage = ({ data }) => {
-                if (data.end) {
-                    stopPythonExecution();
-                } else {
-                    dispatch(
-                        appendLog({ type: data.type, message: data.message })
-                    );
-                }
-            };
-
             pyWorker.postMessage({
+                type: workerCommands.START,
                 code: codeArrayToString(pythonCode),
             });
         }
     };
 
-    const clearConsole = () => {
-        dispatch(clearLogs());
-    };
-
     const stopPythonExecution = () => {
-        pyWorker.terminate();
-        pyWorker = null;
-        changePythonStatus(false);
+        if (pythonRunning) {
+            changePythonStatus(false);
+        }
     };
 
     const getTranslationStatusDiv = () => {
@@ -103,19 +119,6 @@ const Editor = () => {
                 {translationStatus ? translationStatus.message : ""}
             </div>
         );
-    };
-
-    const getLogs = () => {
-        return logs.map((log, index) => (
-            <div
-                key={index}
-                className={`log-message ${
-                    log.status === MessageLevel.ERROR ? "log-error" : ""
-                }`}
-            >
-                {log.message}
-            </div>
-        ));
     };
 
     return (
@@ -170,8 +173,9 @@ const Editor = () => {
                     className="editor-page-stop-execution"
                     label="Stop"
                     onClick={() => stopPythonExecution()}
+                    disabled={!pythonRunning}
                 ></Button>
-                <div className="editor-console">{getLogs()}</div>
+                <div className="editor-console" ref={consoleRef}></div>
             </div>
         </div>
     );
