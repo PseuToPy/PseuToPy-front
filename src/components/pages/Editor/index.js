@@ -97,7 +97,7 @@ const Editor = () => {
 
     const clearConsole = () => {
         dispatch(clearLogs());
-        showToast(toast, "warn", t("editor.clearButton"), t("editor.toastClearButton"), 2000);
+        showToast(toast, "info", t("editor.clearButton"), t("editor.toastClearButton"), 2000);
     };
 
 
@@ -115,7 +115,7 @@ const Editor = () => {
     return (
         <div className="p-grid">
             <PanelOptions />
-            <Panel header={"PseuToCode"} className="p-col-12 p-lg-6 p-shadow-4">
+            <Panel header={"PseuToCode"} className="p-col-12 p-lg-6 p-shadow-4 header-light-color">
                 <div className="content">
                     <CodeEditor
                         code={codeArrayToString(pseutopyCode)}
@@ -128,7 +128,7 @@ const Editor = () => {
                     onClick={() => validatePseudocode()}
                 ></Button>
             </Panel>
-            <Panel header={"Python"} className="p-col-12 p-lg-6 p-shadow-4">
+            <Panel header={"Python"} className="p-col-12 p-lg-6 p-shadow-4 header-light-color">
                 <div className="content">
                     <CodeEditor
                         language="python"
@@ -142,12 +142,12 @@ const Editor = () => {
                     onClick={() => executePython()}
                 ></Button>
                 <Button
-                    className="p-button-outlined p-m-2 p-button-warning"
+                    className="p-button-outlined p-m-2 p-button-info"
                     label={t("editor.clearButton")}
                     onClick={() => clearConsole()}
                 ></Button>
             </Panel>
-            <Panel header={"Console"} className="p-col-12 p-shadow-4 p-mt-3">
+            <Panel header={"Console"} className="p-col-12 p-shadow-4 p-mt-3 header-light-color">
                 <div className="console content">
                     <div className="log-message">{t("editor.consoleMsg")}</div>
                     <hr></hr>

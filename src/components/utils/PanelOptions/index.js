@@ -46,12 +46,12 @@ const PanelOptions = () => {
     }
 
     return (
-        <Panel header="Documentation" className="p-col-12 p-shadow-4 p-mb-3">
+        <Panel header="Documentation" className="p-col-12 p-shadow-4 p-mb-3 header-light-color">
             <TabView className={`panel-options ${opened ? 'panel-opened' : ''}`}>
                 {renderOptions()}
             </TabView>
             <center className="height-0px">
-                <Button className="p-button-rounded panel-options-button" label={opened ? <i className="pi pi-arrow-up"></i> : <i className="pi pi-arrow-down"></i>} onClick={() => fold(!opened)} />
+                <Button className="p-button-rounded panel-options-button button-light-color" label={opened ? <i className="pi pi-arrow-up"></i> : <i className="pi pi-arrow-down"></i>} onClick={() => fold(!opened)} />
             </center>
         </Panel>
     );
