@@ -26,12 +26,10 @@ function initPython(outputFn) {
         timeoutMsg: () => "skulpt.timeoutError",
         __future__: Sk.python3,
     });
-    console.log(Sk);
 }
 
 function stopPython() {
     pythonRunning = setRun(false);
-    console.log(pythonRunning);
 }
 
 function setRun(status) {
