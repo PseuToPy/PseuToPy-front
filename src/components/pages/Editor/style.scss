@@ -1,29 +1,24 @@
-.editor-page-title {
-    text-align: center;
-}
-
-.editor-page-content {
-    display: flex;
-
-    .editor.code {
-        flex-grow: 2;
-    }
-}
-
-.editor-page-action {
-    display: flex;
-    justify-content: flex-end;
-    .editor-page-action-checkbox {
-        margin: 10px;
-        align-self: center;
-    }
-
-    .editor-page-validate {
-        margin: 10px;
-    }
-}
-
-.editor-page-message.error,
 .log-message.log-error {
     color: crimson;
+}
+
+.content {
+    max-height: 25vh;
+    overflow-y: auto;
+}
+
+.console {
+    height: 30vh;
+    background-color: black;
+    padding: 10px;
+}
+
+.log-message {
+    background-color: black;
+    color: white;
+}
+
+.log-error {
+    background-color: black;
+    color: red;
 }

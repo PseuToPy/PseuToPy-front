@@ -5,7 +5,7 @@ import theme from "prism-react-renderer/themes/github";
 
 import "./style.scss";
 
-const CodeViewer = ({ language = "", code = "", withLineNumbers = true }) => {
+const CodeViewer = ({ language = "", code = "", withLineNumbers = false }) => {
     return (
         <Highlight
             {...defaultProps}
