@@ -32,10 +32,5 @@
     "error": {
         "header": "ERREUR",
         "message": "Erreur 404 - Pas de page trouvée !"
-    },
-    "test": {
-        "1": "Current lang === FR",
-        "more": "Plus",
-        "less": "Moins"
     }
 }
