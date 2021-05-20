@@ -6,9 +6,9 @@ const sliceName = "editor";
 
 const initialState = {
     grammar: [],
-    pseutopyCode: [],
+    pseutopyCode: "",
     translationStatus: null,
-    pythonCode: [],
+    pythonCode: "",
     requestUpdate: false,
 };
 
