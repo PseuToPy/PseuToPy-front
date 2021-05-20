@@ -2,9 +2,10 @@
 import "skulpt/dist/skulpt.min";
 import "skulpt/dist/skulpt-stdlib";
 
-let pythonRunning = false;
+var pythonRunning = setRun(false);
+let defaultExecutionTime = 5000;
 
-const initPython = outputFn => {
+function initPython(outputFn) {
     const inputFn = x => {
         if (
             Sk.builtinFiles === undefined ||
@@ -15,28 +16,41 @@ const initPython = outputFn => {
     };
 
     Sk.configure({
-        yieldLimit: 100,
-        execLimit: 5000,
+        yieldLimit: 500,
+        execLimit: defaultExecutionTime,
         killableWhile: true,
         killableFor: true,
 
         output: outputFn,
         read: inputFn,
+        timeoutMsg: () => "skulpt.timeoutError",
         __future__: Sk.python3,
     });
-};
+    console.log(Sk);
+}
 
-const runPython = async (code, outputFn, errorFn) => {
-    pythonRunning = true;
+function stopPython() {
+    pythonRunning = setRun(false);
+    console.log(pythonRunning);
+}
+
+function setRun(status) {
+    pythonRunning = Boolean(status);
+}
+
+function getRun() {
+    return pythonRunning;
+}
+
+async function runPython(code, outputFn, errorFn) {
+    setRun(true);
     initPython(outputFn);
     try {
         await Sk.misceval.asyncToPromise(
             () => Sk.importMainWithBody("<stdin>", false, code, true),
             {
                 "*": () => {
-                    console.log(pythonRunning);
-                    if (!pythonRunning)
-                        throw new Error("Interrupted Execution");
+                    if (!getRun()) throw new Error("Interrupted Execution");
                 },
             }
         );
@@ -45,10 +59,6 @@ const runPython = async (code, outputFn, errorFn) => {
     } finally {
         pythonRunning = false;
     }
-};
-
-const stopPython = () => {
-    pythonRunning = false;
-};
+}
 
 export { runPython, stopPython };

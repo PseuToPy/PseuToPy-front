@@ -24,7 +24,6 @@ self.onmessage = ({ data }) => {
     switch (data.type) {
         case START: {
             runPython(data.code, workerOutputFn, workerErrorFn).finally(() => {
-                console.log("gone here");
                 self.postMessage({ type: STOP });
             });
             postMessage({ type: START });

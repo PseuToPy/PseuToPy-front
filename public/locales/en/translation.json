@@ -32,5 +32,9 @@
         "1": "Current lang === EN",
         "more": "More",
         "less": "Less"
+    },
+    "skulpt": {
+        "timeoutError": "Code execution timeout!",
+        "defaultError": "An error has occured during execution."
     }
 }

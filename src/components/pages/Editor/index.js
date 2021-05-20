@@ -52,7 +52,7 @@ const Editor = () => {
                 break;
             }
             case workerCommands.STOP: {
-                stopPythonExecution();
+                changePythonStatus(false);
                 break;
             }
             default:
@@ -75,10 +75,21 @@ const Editor = () => {
 
     const createLog = (level, message) => {
         const log = document.createElement("div");
-        log.className = `log-message ${
-            level === MessageLevel.ERROR ? "log-error" : ""
-        }`;
-        log.textContent = message;
+        if (level === MessageLevel.ERROR) {
+            log.className = "log-message log-error";
+            const messageArray = message.split(" ");
+            const messageTranslated = t(
+                messageArray.length >= 1 ? messageArray[1] : message
+            );
+            if (messageTranslated === message) {
+                log.textContent = t("skulpt.defaultError");
+            } else {
+                log.textContent = messageTranslated;
+            }
+        } else {
+            log.className = "log-message";
+            log.textContent = message;
+        }
         return log;
     };
 
@@ -97,7 +108,7 @@ const Editor = () => {
 
     const stopPythonExecution = () => {
         if (pythonRunning) {
-            changePythonStatus(false);
+            pyWorker.postMessage({ type: workerCommands.STOP });
         }
     };
 
@@ -169,12 +180,15 @@ const Editor = () => {
                     label={t("editor.clearConsoleButton")}
                     onClick={() => clearConsole()}
                 ></Button>
-                <Button
-                    className="editor-page-stop-execution"
-                    label="Stop"
-                    onClick={() => stopPythonExecution()}
-                    disabled={!pythonRunning}
-                ></Button>
+                {
+                    // Stop button not working
+                    // <Button
+                    //     className="editor-page-stop-execution"
+                    //     label="Stop"
+                    //     onClick={() => stopPythonExecution()}
+                    //     disabled={!pythonRunning}
+                    // ></Button>
+                }
                 <div className="editor-console" ref={consoleRef}></div>
             </div>
         </div>

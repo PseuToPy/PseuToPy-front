@@ -32,5 +32,9 @@
         "1": "Current lang === FR",
         "more": "Plus",
         "less": "Moins"
+    },
+    "skulpt": {
+        "timeoutError": "Délai d'exécution du code dépassé !",
+        "defaultError": "Une erreur s'est produite pendant l'exécution."
     }
 }
