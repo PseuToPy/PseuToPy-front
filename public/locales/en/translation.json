@@ -32,5 +32,9 @@
     "error": {
         "header": "ERROR",
         "message": "Error 404 - No page found !"
+    },
+    "skulpt": {
+        "timeoutError": "Code execution timeout!",
+        "defaultError": "An error has occured during execution."
     }
 }
