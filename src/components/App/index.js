@@ -4,7 +4,6 @@ import Editor from "../pages/Editor";
 import About from "../pages/About";
 import Cgu from "../pages/Cgu";
 import Error404 from "../pages/Error404";
-import Test from "../pages/Test";
 import Navigation from "../utils/Navigation";
 import Footer from "../utils/Footer";
 import { Suspense } from "react";
@@ -23,7 +22,6 @@ function App() {
                             <Route path="/editor" component={Editor} />
                             <Route path="/about" component={About} />
                             <Route path="/cgu" component={Cgu} />
-                            <Route path="/test" component={Test} />
                             <Route path="*" component={Error404} />
                         </Switch>
                     </div>
