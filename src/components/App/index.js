@@ -10,6 +10,12 @@ import { Suspense } from "react";
 
 import "./style.scss";
 
+/**
+ * App Component
+ * @function App
+ * @return {JSX} Component template
+ * @see React.Component
+ */
 function App() {
     return (
         <Suspense fallback={<div></div>} maxDuration={2000}>

@@ -19,14 +19,30 @@ import "./style.scss";
 
 const stringSeparator = "\n";
 
+/**
+ * function that returns a String from an array
+ * @param {Array} code  
+ * @returns {String} 
+ */
 const codeArrayToString = code => {
     return code.join(stringSeparator);
 };
 
+/**
+ * function that returns an array from a String
+ * @param {String} code 
+ * @returns {Array}
+ */
 const codeStringToArray = code => {
     return code.split(stringSeparator);
 };
 
+/**
+ * Editor Component
+ * @function Editor
+ * @return {JSX} Component template
+ * @see React.Component
+ */
 const Editor = () => {
     const { i18n, t } = useTranslation();
 
@@ -126,6 +142,12 @@ const Editor = () => {
         dispatch(writePseutopy(codeStringToArray(newCode)));
     };
 
+    /**
+     * function that create a log message
+     * @param {String} level of the message 
+     * @param {String} message 
+     * @returns {JSX}
+     */
     const createLog = (level, message) => {
         const log = document.createElement("div");
         if (level === MessageLevel.ERROR) {
@@ -146,6 +168,9 @@ const Editor = () => {
         return log;
     };
 
+    /**
+     * function that clears the console log
+     */
     const clearConsole = () => {
         consoleRef.current.innerHTML = "";
         showToast(
@@ -157,6 +182,9 @@ const Editor = () => {
         );
     };
 
+    /**
+     * function that execute the python code
+     */
     const executePython = () => {
         if (!pythonRunning) {
             showToast(

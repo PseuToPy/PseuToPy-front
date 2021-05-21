@@ -2,6 +2,12 @@ import "./style.scss";
 import { Panel } from "primereact/panel";
 import { useTranslation } from "react-i18next";
 
+/**
+ * Error404 Component
+ * @function Error404
+ * @return {JSX} Component template
+ * @see React.Component
+ */
 const Error404 = () => {
     const { t } = useTranslation();
 
