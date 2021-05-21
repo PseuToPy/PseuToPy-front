@@ -6,7 +6,7 @@ import Markdown from "markdown-to-jsx";
 import gcu_en from "./markdown/gcu_en.md";
 import gcu_fr from "./markdown/gcu_fr.md";
 
-const Cgu = () => {
+const Gcu = () => {
     const { t, i18n } = useTranslation();
     const [markdown, setMarkdown] = useState("");
 
@@ -36,4 +36,4 @@ const Cgu = () => {
     );
 };
 
-export default Cgu;
+export default Gcu;
