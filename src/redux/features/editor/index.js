@@ -46,9 +46,12 @@ const editorSlice = createSlice({
         [convertPseudocode.fulfilled]: (state, action) => {
             const { code, message, status } = action.payload;
             state.pythonCode = code;
+            console.log(code)
+            console.log(message)
+            console.log(status)
             state.translationStatus = {
                 status,
-                message,
+                message
             };
             state.requestUpdate = true;
         },
