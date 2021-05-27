@@ -17,26 +17,6 @@ import workerCommands from "../../../model/pythonWorker/workerCommands";
 import PythonWorker from "../../../worker/python.worker";
 import "./style.scss";
 
-const stringSeparator = "\n";
-
-/**
- * function that returns a String from an array
- * @param {Array} code  
- * @returns {String} 
- */
-const codeArrayToString = code => {
-    return code.join(stringSeparator);
-};
-
-/**
- * function that returns an array from a String
- * @param {String} code 
- * @returns {Array}
- */
-const codeStringToArray = code => {
-    return code.split(stringSeparator);
-};
-
 /**
  * Editor Component
  * @function Editor
@@ -139,7 +119,7 @@ const Editor = () => {
     };
 
     const writePseudocode = newCode => {
-        dispatch(writePseutopy(codeStringToArray(newCode)));
+        dispatch(writePseutopy(newCode));
     };
 
     /**
@@ -196,7 +176,7 @@ const Editor = () => {
             );
             pyWorker.postMessage({
                 type: workerCommands.START,
-                code: codeArrayToString(pythonCode),
+                code: pythonCode,
             });
         }
     };
@@ -214,7 +194,7 @@ const Editor = () => {
             <Panel header={"PseuToCode"} className="p-col-12 p-lg-6 p-shadow-4 header-light-color">
                 <div className="content">
                     <CodeEditor
-                        code={codeArrayToString(pseutopyCode)}
+                        code={pseutopyCode}
                         onWrite={newCode => writePseudocode(newCode)}
                     />
                 </div>
@@ -226,11 +206,7 @@ const Editor = () => {
             </Panel>
             <Panel header={"Python"} className="p-col-12 p-lg-6 p-shadow-4 header-light-color">
                 <div className="content">
-                    <CodeEditor
-                        language="python"
-                        code={codeArrayToString(pythonCode)}
-                        readonly
-                    />
+                    <CodeEditor language="python" code={pythonCode} readonly />
                 </div>
                 <Button
                     className="p-button-outlined p-m-2"
