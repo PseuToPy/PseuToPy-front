@@ -27,6 +27,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm i
+    - run: npm test
     - run: npm run-script build --prod
     - run: .github/workflows/deploy_front.sh
   
