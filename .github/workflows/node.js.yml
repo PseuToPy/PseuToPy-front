@@ -11,12 +11,11 @@ on:
     branches: [ main, dev ]
 
 jobs:
-  runs-on: self-hosted
-  strategy:
-    matrix:
-      node-version: [14.x]
-
   install:
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        node-version: [14.x]
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -25,14 +24,23 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm i
   test:
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        node-version: [14.x]
     needs: install
     steps:
       - run: npm test
   build:
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        node-version: [14.x]
     needs: [install, test]
     steps:
       - run: npm run-script build --prod
   deploy:
+    runs-on: self-hosted
     needs: [install, test, build]
     steps:
       - run: .github/workflows/deploy_front.sh
