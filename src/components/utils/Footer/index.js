@@ -18,7 +18,7 @@ const Footer = () => {
                 </span>
                 <span className="footer-item">
                     <HashLink
-                        to="/cgu"
+                        to="/gcu"
                         className="footer-link"
                         aria-haspopup="false"
                     >

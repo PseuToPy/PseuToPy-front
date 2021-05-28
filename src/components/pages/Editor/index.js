@@ -17,16 +17,12 @@ import workerCommands from "../../../model/pythonWorker/workerCommands";
 import PythonWorker from "../../../worker/python.worker";
 import "./style.scss";
 
-const stringSeparator = "\n";
-
-const codeArrayToString = code => {
-    return code.join(stringSeparator);
-};
-
-const codeStringToArray = code => {
-    return code.split(stringSeparator);
-};
-
+/**
+ * Editor Component
+ * @function Editor
+ * @return {JSX} Component template
+ * @see React.Component
+ */
 const Editor = () => {
     const { i18n, t } = useTranslation();
 
@@ -126,6 +122,12 @@ const Editor = () => {
         dispatch(writePseutopy(newCode));
     };
 
+    /**
+     * function that create a log message
+     * @param {String} level of the message 
+     * @param {String} message 
+     * @returns {JSX}
+     */
     const createLog = (level, message) => {
         const log = document.createElement("div");
         if (level === MessageLevel.ERROR) {
@@ -146,17 +148,23 @@ const Editor = () => {
         return log;
     };
 
+    /**
+     * function that clears the console log
+     */
     const clearConsole = () => {
         consoleRef.current.innerHTML = "";
         showToast(
             toast,
-            "warn",
+            "info",
             t("editor.clearButton"),
             t("editor.toastClearButton"),
             2000
         );
     };
 
+    /**
+     * function that execute the python code
+     */
     const executePython = () => {
         if (!pythonRunning) {
             showToast(
@@ -183,7 +191,7 @@ const Editor = () => {
     return (
         <div className="p-grid">
             <PanelOptions />
-            <Panel header={"PseuToCode"} className="p-col-12 p-lg-6 p-shadow-4">
+            <Panel header={"PseuToCode"} className="p-col-12 p-lg-6 p-shadow-4 header-light-color">
                 <div className="content">
                     <CodeEditor
                         code={pseutopyCode}
@@ -196,7 +204,7 @@ const Editor = () => {
                     onClick={() => validatePseudocode()}
                 ></Button>
             </Panel>
-            <Panel header={"Python"} className="p-col-12 p-lg-6 p-shadow-4">
+            <Panel header={"Python"} className="p-col-12 p-lg-6 p-shadow-4 header-light-color">
                 <div className="content">
                     <CodeEditor language="python" code={pythonCode} readonly />
                 </div>
@@ -206,7 +214,7 @@ const Editor = () => {
                     onClick={() => executePython()}
                 ></Button>
                 <Button
-                    className="p-button-outlined p-m-2 p-button-warning"
+                    className="p-button-outlined p-m-2 p-button-info"
                     label={t("editor.clearButton")}
                     onClick={() => clearConsole()}
                 ></Button>
@@ -220,7 +228,7 @@ const Editor = () => {
                     // ></Button>
                 }
             </Panel>
-            <Panel header={"Console"} className="p-col-12 p-shadow-4 p-mt-3">
+            <Panel header={"Console"} className="p-col-12 p-shadow-4 p-mt-3 header-light-color">
                 <div className="console content">
                     <div className="log-message">{t("editor.consoleMsg")}</div>
                     <hr></hr>

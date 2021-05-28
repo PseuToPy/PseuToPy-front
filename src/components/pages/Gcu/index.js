@@ -6,7 +6,13 @@ import Markdown from "markdown-to-jsx";
 import gcu_en from "./markdown/gcu_en.md";
 import gcu_fr from "./markdown/gcu_fr.md";
 
-const Cgu = () => {
+/**
+ * Gcu Component
+ * @function Gcu
+ * @return {JSX} Component template
+ * @see React.Component
+ */
+const Gcu = () => {
     const { t, i18n } = useTranslation();
     const [markdown, setMarkdown] = useState("");
 
@@ -16,6 +22,11 @@ const Cgu = () => {
             .then(text => setMarkdown(text));
     }, [i18n.language]);
 
+    /**
+     * Functions that returns the markdown with the correct language for GCU
+     * @param {String} key language
+     * @returns {Markdown} the markdown file
+     */
     const renderSwitch = key => {
         switch (key) {
             case "fr":
@@ -36,4 +47,4 @@ const Cgu = () => {
     );
 };
 
-export default Cgu;
+export default Gcu;

@@ -6,6 +6,12 @@ import Markdown from "markdown-to-jsx";
 import about_en from "./markdown/about_en.md";
 import about_fr from "./markdown/about_fr.md";
 
+/**
+ * About Component
+ * @function About
+ * @return {JSX} Component template
+ * @see React.Component
+ */
 const About = () => {
     const { t, i18n } = useTranslation();
     const [markdown, setMarkdown] = useState("");
@@ -16,6 +22,11 @@ const About = () => {
             .then(text => setMarkdown(text));
     }, [i18n.language]);
 
+    /**
+     * Functions that returns the markdown with the correct language for About
+     * @param {String} key language
+     * @returns {Markdown} the markdown file
+     */
     const renderSwitch = key => {
         switch (key) {
             case "fr":

@@ -48,7 +48,7 @@ const editorSlice = createSlice({
             state.pythonCode = code;
             state.translationStatus = {
                 status,
-                message,
+                message
             };
             state.requestUpdate = true;
         },

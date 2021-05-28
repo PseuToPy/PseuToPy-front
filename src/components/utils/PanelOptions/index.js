@@ -10,7 +10,7 @@ import CodeViewer from "../CodeViewer";
 import "./style.scss";
 
 const PanelOptions = () => {
-    const { i18n } = useTranslation();
+    const { i18n, t  } = useTranslation();
     const dispatch = useDispatch();
     const grammar = useSelector(state => state.editor.grammar);
     const [opened, fold] = useState(true);
@@ -50,15 +50,13 @@ const PanelOptions = () => {
     };
 
     return (
-        <Panel header="Documentation" className="p-col-12 p-shadow-4 p-mb-3">
-            <TabView
-                className={`panel-options ${opened ? "panel-opened" : ""}`}
-            >
+        <Panel header={t("editor.documentation")} className="p-col-12 p-shadow-4 p-mb-3 header-light-color">
+            <TabView className={`panel-options ${opened ? 'panel-opened' : ''}`}>
                 {renderOptions()}
             </TabView>
             <center className="height-0px">
                 <Button
-                    className="p-button-rounded panel-options-button"
+                    className="p-button-rounded panel-options-button button-light-color"
                     icon={opened ? "pi pi-arrow-up" : "pi pi-arrow-down"}
                     onClick={() => fold(!opened)}
                 />
