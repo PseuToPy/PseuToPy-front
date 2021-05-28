@@ -12,6 +12,9 @@ const initialState = {
     requestUpdate: false,
 };
 
+/** 
+ * Get the grammar via the api
+ */
 export const fetchGrammar = createAsyncThunk(
     `${sliceName}/grammar`,
     async language => {
@@ -20,6 +23,9 @@ export const fetchGrammar = createAsyncThunk(
     }
 );
 
+/** 
+ * Get the converted code via api
+ */
 export const convertPseudocode = createAsyncThunk(
     `${sliceName}/convert`,
     async ({ instructions, language }) => {
