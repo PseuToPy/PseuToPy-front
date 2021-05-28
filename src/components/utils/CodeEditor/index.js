@@ -6,6 +6,16 @@ import theme from "prism-react-renderer/themes/github";
 import "./style.scss";
 import { Fragment } from "react";
 
+/**
+ * @description Html code editor
+ * @param {string, string, function, bool} {
+ *     language = "", Programming language for syntax highlighting https://prismjs.com/#supported-languages
+ *     code = "", Code present in the editor
+ *     onWrite = () => {}, Function called at each writing
+ *     readonly = false, Boolean to define the read-only mode
+ * }
+ * @return {JSX} 
+ */
 const CodeEditor = ({
     language = "",
     code = "",

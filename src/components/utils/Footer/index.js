@@ -2,6 +2,10 @@ import { useTranslation } from "react-i18next";
 import { HashLink } from "react-router-hash-link";
 import "./style.scss";
 
+/**
+ * @description Represents the footer of the page 
+ * @return {JSX} 
+ */
 const Footer = () => {
     const { t } = useTranslation();
     return (

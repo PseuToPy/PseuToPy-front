@@ -4,6 +4,10 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Menubar } from 'primereact/menubar';
 
+/**
+ * @description Represents the site's menu
+ * @return {JSX} 
+ */
 const Navigation = () => {
     const { t, i18n } = useTranslation();
 

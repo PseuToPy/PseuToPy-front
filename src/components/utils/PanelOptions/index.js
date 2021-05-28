@@ -9,6 +9,10 @@ import { Button } from "primereact/button";
 import CodeViewer from "../CodeViewer";
 import "./style.scss";
 
+/**
+ * @description Represents the documentation part of the editor
+ * @return {JSX} 
+ */
 const PanelOptions = () => {
     const { i18n, t  } = useTranslation();
     const dispatch = useDispatch();
@@ -19,6 +23,10 @@ const PanelOptions = () => {
         dispatch(fetchGrammar(i18n.language));
     }, [dispatch, i18n.language]);
 
+    /**
+     * @description Generates the different documentation tabs retrieved by the api
+     * @return {JSX} 
+     */
     const renderOptions = () => {
         return grammar.map(category => (
             <TabPanel

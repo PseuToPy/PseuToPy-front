@@ -5,6 +5,15 @@ import theme from "prism-react-renderer/themes/github";
 
 import "./style.scss";
 
+/**
+ * @description Html code viewer
+ * @param {string, string, function, bool} {
+ *     language = "", Programming language for syntax highlighting https://prismjs.com/#supported-languages
+ *     code = "", Code present in the editor
+ *     onWrite = () => {} Function called at each writing
+ * }
+ * @return {JSX} 
+ */
 const CodeViewer = ({ language = "", code = "", withLineNumbers = false }) => {
     return (
         <Highlight
