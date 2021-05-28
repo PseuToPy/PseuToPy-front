@@ -11,23 +11,28 @@ on:
     branches: [ main, dev ]
 
 jobs:
-  build:
+  runs-on: self-hosted
+  strategy:
+    matrix:
+      node-version: [14.x]
 
-    runs-on: self-hosted
-
-    strategy:
-      matrix:
-        node-version: [14.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
+  install:
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm i
-    - run: npm test
-    - run: npm run-script build --prod
-    - run: .github/workflows/deploy_front.sh
-  
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm i
+  test:
+    needs: install
+    steps:
+      - run: npm test
+  build:
+    needs: [install, test]
+    steps:
+      - run: npm run-script build --prod
+  deploy:
+    needs: [install, test, build]
+    steps:
+      - run: .github/workflows/deploy_front.sh
