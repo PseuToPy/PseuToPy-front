@@ -1,10 +1,10 @@
 <center># Welcome to PseuToPy!</center>
 
-This site aims to facilitate the learning of programming for people who do not master English. Indeed, programming languages often use keywords in English which can complicate learning when it is not our native language. 
+This site aims to facilitate the learning of programming for people who do not master English.Indeed, programming languages often use keywords in English which can complicate the learning when it is not our native language. 
 To overcome this problem we suggest you code in a pseudo language using keywords you know. 
 
-
 You can already start programming in the [editor](#/editor) tab.
+
 
 ## Editor 
 
