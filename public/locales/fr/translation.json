@@ -27,15 +27,15 @@
         "toastConvertButtonError":"Erreur de syntaxe",
         "toastExecuteButton":"Exécution du code en cours...",
         "toastClearButton":"La console a été vidée",
-        "consoleMsg":"Pour écrire dans la console, il faut utiliser des fonctions d'affichage comme print('Mon message')"
+        "consoleMsg":"Pour écrire dans la console, il faut utiliser des fonctions d'affichage comme print('Mon message')",
+        "documentation": "Documentation"
     },
     "error": {
         "header": "ERREUR",
         "message": "Erreur 404 - Pas de page trouvée !"
     },
-    "test": {
-        "1": "Current lang === FR",
-        "more": "Plus",
-        "less": "Moins"
+    "skulpt": {
+        "timeoutError": "Délai d'exécution du code dépassé !",
+        "defaultError": "Une erreur s'est produite pendant l'exécution."
     }
 }

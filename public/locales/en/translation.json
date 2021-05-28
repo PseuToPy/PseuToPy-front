@@ -27,15 +27,15 @@
         "toastConvertButtonError":"Syntax problem",
         "toastExecuteButton":"Running code in progress...",
         "toastClearButton":"The console has been emptied",
-        "consoleMsg":"To fill the console use a function such as print('My message')"
+        "consoleMsg":"To fill the console use a function such as print('My message')",
+        "documentation": "Documentation"
     },
     "error": {
         "header": "ERROR",
         "message": "Error 404 - No page found !"
     },
-    "test": {
-        "1": "Current lang === EN",
-        "more": "More",
-        "less": "Less"
+    "skulpt": {
+        "timeoutError": "Code execution timeout!",
+        "defaultError": "An error has occured during execution."
     }
 }
