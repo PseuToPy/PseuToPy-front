@@ -35,7 +35,6 @@
         "message": "Erreur 404 - Pas de page trouvée !"
     },
     "skulpt": {
-        "timeoutError": "Délai d'exécution du code dépassé !",
-        "defaultError": "Une erreur s'est produite pendant l'exécution."
+        "timeoutError": "Délai d'exécution du code dépassé !"
     }
 }

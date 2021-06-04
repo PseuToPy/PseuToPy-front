@@ -124,22 +124,18 @@ const Editor = () => {
 
     /**
      * function that create a log message
-     * @param {String} level of the message 
-     * @param {String} message 
+     * @param {String} level of the message
+     * @param {String} message
      * @returns {JSX}
      */
     const createLog = (level, message) => {
         const log = document.createElement("div");
         if (level === MessageLevel.ERROR) {
             log.className = "log-message log-error";
-            const messageArray = message.split(" ");
-            const messageTranslated = t(
-                messageArray.length >= 1 ? messageArray[1] : message
-            );
-            if (messageTranslated === message) {
-                log.textContent = t("skulpt.defaultError");
+            if (message.includes("skulpt.timeoutError")) {
+                log.textContent = t("skulpt.timeoutError");
             } else {
-                log.textContent = messageTranslated;
+                log.textContent = message;
             }
         } else {
             log.className = "log-message";
@@ -191,7 +187,10 @@ const Editor = () => {
     return (
         <div className="p-grid">
             <PanelOptions />
-            <Panel header={"PseuToCode"} className="p-col-12 p-lg-6 p-shadow-4 header-light-color">
+            <Panel
+                header={"PseuToCode"}
+                className="p-col-12 p-lg-6 p-shadow-4 header-light-color"
+            >
                 <div className="content">
                     <CodeEditor
                         code={pseutopyCode}
@@ -204,7 +203,10 @@ const Editor = () => {
                     onClick={() => validatePseudocode()}
                 ></Button>
             </Panel>
-            <Panel header={"Python"} className="p-col-12 p-lg-6 p-shadow-4 header-light-color">
+            <Panel
+                header={"Python"}
+                className="p-col-12 p-lg-6 p-shadow-4 header-light-color"
+            >
                 <div className="content">
                     <CodeEditor language="python" code={pythonCode} readonly />
                 </div>
@@ -228,7 +230,10 @@ const Editor = () => {
                     // ></Button>
                 }
             </Panel>
-            <Panel header={"Console"} className="p-col-12 p-shadow-4 p-mt-3 header-light-color">
+            <Panel
+                header={"Console"}
+                className="p-col-12 p-shadow-4 p-mt-3 header-light-color"
+            >
                 <div className="console content">
                     <div className="log-message">{t("editor.consoleMsg")}</div>
                     <hr></hr>
