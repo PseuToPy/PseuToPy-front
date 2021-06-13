@@ -22,3 +22,4 @@ You can find the syntax of this file [here](https://docs.github.com/en/actions/r
 
 For the moment, the runners are hosted on Bastien Marais' server. In case of problems with a machine, just send a message and it will be fixed.  
 Discord: Bastoune_#6560 / Email: marais.bas@gmail.com 
+
