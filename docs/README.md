@@ -1,10 +1,9 @@
-# TODO
+# Documentation
 
-Utiliser ce README comme sommaire avec redirection avec des fichiers pour chaque partie :
-* Comment installer et lancer le projet ✅
-* Relations entre les composants (schéma) et structure du projet
-* La traduction 
-* Les pages en markdown
-* Redux ✅
-* Skulpt ✅
-* CI/CD ✅
+* [How to install and launch the project ?](pages/starter_kit.md)
+* [The different components of the project.](pages/components.md)
+* [Translation in the project.](pages/translate.md) 
+* [How to write content in markdown?](pages/markdown.md)
+* [How REDUX works?](pages/redux_toolkit.md)
+* [Python execution with SKULPT](pages/skulpt.md)
+* [The project's CI/CD](pages/ci_cd.md)
