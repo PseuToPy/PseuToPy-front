@@ -30,11 +30,11 @@ In the project, we only use the `t` and the `i18n` subfunctions.
 Translation files used are located at `public/locale/<language_key>/translation.json`  
 They are json object containing keys and text. It is important to keep in mind that all translation files should share the same key.
 
-## How to use both .json and .md files ?
+### How to use both .json and .md files ?
 As i18n cannot manage several translation files, we decided to mainly use .json files as translation files and we loaded .md files when needed.  
 More information about .md files load can be found [here](markdown.md).
 
-## Useful parameters
+### Useful parameters
 It is parametrized using the file located at `src/utils/i18n/index.js`
 ```js
 import i18n from "i18next";
