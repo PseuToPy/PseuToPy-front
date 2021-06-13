@@ -3,6 +3,11 @@
 [Official i18next Documentation](https://www.i18next.com/)  
 [NPM Documentation](https://www.npmjs.com/package/i18next)
 
+### Needed library
+* i18next
+* i18next-http-backend
+* react-i18next
+
 ## What is i18next ?
 I18next is an internationalization-framework written in and for JavaScript.  
 Among its features, it allows the application to:
@@ -30,4 +35,38 @@ As i18n cannot manage several translation files, we decided to mainly use .json 
 More information about .md files load can be found [here](markdown.md).
 
 ## Useful parameters
-It is parametrized using the file located at src/utils/i18n/index.js
+It is parametrized using the file located at `src/utils/i18n/index.js`
+```js
+import i18n from "i18next";
+import Backend from "i18next-http-backend";
+import { initReactI18next } from "react-i18next";
+import { needsDebug } from "../debugLevel";
+
+i18n
+    // Use custom backend path to load transltion files
+    .use(Backend)
+    // Load default config and settups for i18next
+    .use(initReactI18next)
+    // Init i18next
+    .init({
+        backend: {
+            loadPath: "/locales/{{lng}}/{{ns}}.json", // generic translation file path
+        },
+        lng: "en", // default language
+        fallbackLng: "en", // use english when the key is other language is not found
+        supportedLngs: ["en", "fr"], // list of accepted language
+        preload: ["en"], // preload english file
+        keySeparator: ".", // translation file key separator 
+        interpolation: {
+            escapeValue: false,
+        },
+        debug: needsDebug(), // display debug information in ht econsole
+        react: {
+            useSuspense: true, // wait translation data load before displaying the view
+        },
+        returnObjects: true,
+    });
+
+export default i18n;
+```
+
